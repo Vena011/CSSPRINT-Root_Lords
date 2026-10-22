@@ -4,15 +4,15 @@
 
 Team **Root Lords** · CSSprint 2026: *Rooted in Innovation* · UST Computer Science Society
 
-> Status: Day 1 initial project document (October 22, 2026). Sections marked **[to be filled after fieldwork]** will be completed with our interview results.
+> Status: Day 1 initial project document (October 22, 2026).
 
 ---
 
 ## 1. Problem
 
-Carinderias near the University of Santo Tomas cook in batches at dawn for an expected crowd of students. Whatever is not sold by closing is taken home, given away, or thrown out, and the money spent on ingredients is lost. The loss is worst on **low-demand days**, such as class suspensions and heavy-rain days, when most student customers stay in their dorms or go home. These owners have no affordable way to reach the students who are still nearby: delivery apps take too large a commission, and a Facebook post cannot coordinate orders.
+Small food vendors near the University of Santo Tomas, such as cook-ahead carinderias and food stalls that pre-cut fruit or prepare ingredients, prepare perishable food before customers arrive. Whatever is not sold is taken home, given away, or thrown out, and the money spent on ingredients is lost. The loss is worst on **low-demand days**, such as class suspensions and heavy-rain days, when most student customers stay in their dorms or go home. These owners have no affordable way to reach the students who are still nearby: delivery apps take too large a commission, and a Facebook post cannot coordinate orders.
 
-**In one sentence:** cook-ahead micro eateries near UST lose money on food that is already cooked because they have no affordable, fast way to sell it to the students who are still nearby.
+**In one sentence:** prepare-ahead micro food vendors near UST lose money on food surplus (cooked dishes and prepared perishables) because demand drops without warning and they have no affordable, fast way to reach the customers still nearby.
 
 ### Evidence
 
@@ -21,18 +21,32 @@ Carinderias near the University of Santo Tomas cook in batches at dawn for an ex
 - **Food waste is large.** The Philippines wastes about 2,175 tons of food every day [11].
 - **Existing channels do not fit.** Delivery apps charge restaurants about 20-33% commission, which a ₱50 dish cannot absorb [13].
 - **Owners need simple tools.** 51% of surveyed MSMEs use only basic digital tools and 23% use none for business [2].
+- **Small food vendors say rain hurts sales.** In 16 focus group discussions with 88 small food vendors in Quezon City and Pasay, vendors reported that rainy seasons reduce sales, regular customers are declining, and they want help attracting customers and managing finances [17].
+- **Suspensions reach millions.** In August 2026 alone, monsoon-related suspensions affected nearly 7 million learners in more than 10,000 public schools [21].
+- **Students near UST get stranded in dorms.** During Typhoon Carina in July 2024, students were stranded in dorms on Dapitan, España, Lacson, and P. Noval; most food establishments near campus closed, delivery apps were limited, and emergency food packs ran out by about 11 PM [18][19]. FEU dormers in the same University Belt feared a food shortage [20]. On days when stalls can still open, nearby students need food; on severe flood days, the same alert helps owners decide not to prepare at all.
+- **Food waste is now a policy priority.** House Bill 8043, which aims to cut food waste by 50% by 2030 and offers tax deductions to establishments that reduce edible surplus, passed third reading in March 2026 with 247 votes; Senate Bill 1378 was filed in September 2025 [22]. A separate Food Waste Reduction Act (HB 2196) was filed in December 2025 [23].
 
-### Field evidence [to be filled after fieldwork]
+### Field evidence (interviews near UST, October 22, 2026)
 
-| Measure | Result |
-|---|---|
-| Owners interviewed near UST | [number] |
-| Owners who regularly have leftovers | [number] of [number] |
-| Typical leftover servings, normal day | [range] |
-| Typical leftover servings, suspension day | [range] |
-| What owners do with leftovers | [answer] |
-| Owners willing to post leftovers on an app | [number] of [number] |
-| Students who would buy discounted leftover ulam | [percent] of [number] |
+We interviewed two long-running food vendors near UST with signed consent forms. Both prepare food only when ordered or prepare small batches, so this is a small sample of first-hand signals that we pair with the published research above, not statistics. Interviewing larger cook-ahead carinderias is part of our pilot plan.
+
+| Measure | Interviewee 1: carinderia (36 years) | Interviewee 2: fruit shake stall (since 2013) |
+|---|---|---|
+| Prepares food ahead? | No, cooks only when ordered | Yes: buys fruit in bulk (good for about three days) and pre-cuts it |
+| Effect of no classes or rain | Sales "definitely" go down | "Malaki"; on heavy-rain days she does not open at all because fruit is expensive |
+| Surplus or spoilage | None reported | Spoilage "minsan hindi maiiwasan"; slow-day losses "minsan 50 to 70%" (her estimate) |
+| Finding customers on slow days | Long-time regulars, Lalamove, own rider | "Wala, nandito lang ako. Hindi ako basta makakahanap eh." Some regulars text orders |
+| Biggest problem | Competition | "Sobrang tumal sa dami ng competition" |
+| Handles surplus by | Not applicable | Does not discount; gives bigger portions so fruit is not wasted |
+| Would use the app? | Yes, "kung makakatulong" | Yes; wants both alerts and visibility; likes showing "kung ano 'yung available" |
+
+**What we learned**
+
+- **Surplus comes from preparing ahead.** The vendor who pre-cuts perishables reported spoilage and large slow-day losses; the cook-to-order carinderia did not. This confirms our target: prepare-ahead vendors.
+- **Slow days hurt both,** matching the suspension data above.
+- **Both struggle to be found among competitors,** and both said they would use an app that shows nearby customers what is available.
+- **Discounts are not the only deal.** The shake vendor gives bigger portions instead of lowering prices, so ReRoot lets vendors offer either a lower price or a bigger serving.
+
 
 ---
 
@@ -42,9 +56,9 @@ Carinderias near the University of Santo Tomas cook in batches at dawn for an ex
 |---|---|
 | **MSME size** | Micro enterprises: up to ₱3M assets and 9 or fewer workers [1][15][16] |
 | **Sector** | Accommodation and Food Service Activities: 190,899 MSMEs, 15.37% of all MSMEs [1] |
-| **Business model** | Cook-ahead eateries (carinderia, turo-turo), which commit money to food before any customer arrives |
+| **Business model** | Prepare-ahead vendors: cook-ahead carinderias and turo-turo stalls, and food stalls that pre-cut fruit or prepare perishable ingredients. They commit money to food before any customer arrives. Our interviews confirmed that cook-to-order eateries have little surplus. |
 | **Place** | Sampaloc, Manila: streets around UST (Dapitan, Asturias, P. Noval, Lacson) |
-| **Primary user** | Carinderia owners whose customers are mainly students |
+| **Primary user** | Owners of prepare-ahead food stalls and carinderias near UST |
 | **Secondary user** | Students living in dorms and boarding houses near UST |
 
 **Why MSMEs specifically:** large food chains already have POS data, planning teams, delivery contracts, and formal waste programs [12]. A carinderia has a notebook and gut feel. One day of unsold food can erase several days of profit.
@@ -58,7 +72,7 @@ ReRoot is a mobile web app that helps carinderia owners avoid and recover losses
 ### MVP flow
 
 1. **Low-demand alert.** In the morning, owners get a warning when a low-demand day is likely, based on a real rain forecast and announced class suspensions, so they can cook less.
-2. **Quick posting with capacity.** If food is left over, the owner posts each dish (name, servings, price, cutoff time) in under 30 seconds, and sets how many orders they can handle (for example, a maximum number of orders or dorm handoffs before cutoff).
+2. **Quick posting with capacity.** If food is left over, the owner posts each item (name, servings, cutoff time, and a deal: a lower price or a bigger serving) in under 30 seconds, and sets how many orders they can handle (for example, a maximum number of orders or dorm handoffs before cutoff).
 3. **Live availability.** Buyers see remaining servings per dish and remaining order slots update in real time (for example, "4 of 12 servings left", "3 more orders accepted"). A dish or carinderia closes automatically when it is sold out or full, so nothing is oversold.
 4. **Share button.** Anyone can share a listing in one tap to Messenger, Viber, or any app as a link with a preview card. The link opens in the browser with no install.
 5. **Home: recommendations and nearby carinderias.** The first screen students see shows recommended leftover deals, ranked by distance, time left before the cutoff, price, and carinderias they bought from before, together with all carinderias with leftovers within a radius they choose (for example 300 m to 1 km) on a map or list.
@@ -113,7 +127,6 @@ In-app payments (cash or GCash on handoff), rider network, native mobile app, na
 | Home screen (demo) | Recommendations and nearby carinderias appear first; changing the radius updates the list |
 | Push notification (demo) | A student phone receives a notification within seconds of a vendor posting |
 | Pooled order (demo) | Two students from one dorm reserve; orders group under that dorm; pickup code verified |
-| Owner test (Day 2) | 1-2 real UST-area owners try posting on their own phones; we record time taken and feedback |
 | Pilot (after hackathon, goal) | 5-10 carinderias using it weekly |
 
 ---
@@ -183,3 +196,10 @@ In-app payments (cash or GCash on handoff), rider network, native mobile app, na
 14. PR Newswire. (2026, January 28). *World's largest marketplace for surplus food, Too Good To Go, launches in Japan*. https://www.prnewswire.com/news-releases/worlds-largest-marketplace-for-surplus-food-too-good-to-go-launches-in-japan-302672081.html
 15. GMA News. (2008, May 23). *Arroyo signs MSME law, redefines micro, small traders* (RA 9501). https://gmanetwork.com/news/money/content/97000/arroyo-signs-msme-law-redefines-micro-small-traders/story
 16. Wikipedia. *Micro business in the Philippines*. https://en.wikipedia.org/wiki/Micro_business_in_the_Philippines
+17. CGIAR Initiative on Resilient Cities. (2023, October 16). *Navigating the daily challenges faced by small food vendors in Metro Manila, Philippines*. https://www.cgiar.org/news-events/news/navigating-the-daily-challenges-faced-by-small-food-vendors-in-metro-manila-philippines
+18. The Varsitarian. (2024, July 25). *Food packs reach Thomasians stranded in dorms due to Carina*. https://varsitarian.net/food-packs-reach-thomasians-stranded-in-dorms-due-to-carina/
+19. TomasinoWeb. (2024, July 25). *Habagat-induced flood around UST subsides; student orgs establish relief ops*. https://tomasinoweb.org/post/1721913207301-8a5aa9f9-habagat-induced-flood-around-ust-subsides-student-orgs-establish-relief-ops
+20. Durano, M. V. A. (2024, July 24). *FEU dormers fear 'food shortage' as Carina floods Manila*. FEU Advocate. https://feuadvocate.net/feu-dormers-fear-food-shortage-as-carina-floods-manila/
+21. INQUIRER.net. (2026, August 10). *DepEd says school suspensions affect almost 7 million students*. https://newsinfo.inquirer.net/2281735/deped-says-school-suspensions-affect-almost-7-million-students
+22. The Freeman / Philstar. (2026, October 18). *Cebu summit seeks to rescue surplus food*. https://www.philstar.com/the-freeman/cebu-news/2026/10/18/2564039/cebu-summit-seeks-rescue-surplus-food
+23. The Manila Times. (2025, December 6). *Food waste reduction law is long overdue*. https://www.manilatimes.net/2025/12/06/opinion/editorial/food-waste-reduction-law-is-long-overdue/2238018
