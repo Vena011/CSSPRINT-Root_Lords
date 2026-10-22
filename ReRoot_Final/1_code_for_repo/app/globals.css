@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* ReRoot design tokens (Figma: Style Guide page). Use as bg-primary, text-muted, rounded-card, etc. */
+@theme {
+  --color-primary: #2F7D4F;
+  --color-primary-dark: #1E5535;
+  --color-primary-soft: #E3F1E8;
+  --color-accent: #E8892B;
+  --color-accent-soft: #FDEBD7;
+  --color-accent-ink: #9A4A00;
+  --color-success: #1F9D55;
+  --color-warning: #F4B400;
+  --color-warning-soft: #FFF4D1;
+  --color-danger: #D64545;
+  --color-danger-soft: #FBE4E4;
+  --color-danger-ink: #A33333;
+  --color-bg: #FBF8F2;
+  --color-surface: #FFFFFF;
+  --color-ink: #1E2420;
+  --color-muted: #66706A;
+  --color-line: #E5DFD3;
+  --color-disabled: #ECE7DE;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --radius-control: 12px;
+  --radius-card: 16px;
+}
+
+html { -webkit-tap-highlight-color: transparent; }
+body { background: #F1ECE2; color: var(--color-ink); font-family: var(--font-sans); }
+
+/* Leaflet price pins */
+.rr-pin { background: #fff; border: 1.5px solid var(--color-accent); color: var(--color-accent-ink); border-radius: 999px; padding: 4px 9px; font: 800 12px/1 var(--font-sans); white-space: nowrap; box-shadow: 0 2px 6px rgba(30,36,32,.18); transform: translate(-50%, -50%); display: inline-block; }
+.rr-pin.rr-pin-top { background: var(--color-accent); color: #fff; }
+.rr-me { width: 18px; height: 18px; border-radius: 50%; background: #2B6FD6; border: 3px solid #fff; box-shadow: 0 0 0 2px rgba(43,111,214,.35); transform: translate(-50%, -50%); }
+
+@keyframes rr-shimmer { 0% { opacity: .55 } 50% { opacity: 1 } 100% { opacity: .55 } }
+.rr-shimmer { animation: rr-shimmer 1.2s ease-in-out infinite; }
+@keyframes rr-up { from { transform: translateY(100%) } to { transform: translateY(0) } }
+.rr-sheet { animation: rr-up .22s ease-out; }
