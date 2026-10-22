@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Badge, Button, Header, Icon, Note, Page } from "./ui";
 import { shareListing } from "./ShareSheet";
+import BottomNav from "./BottomNav";
 import { SkeletonList } from "./States";
 import { useToast } from "./Toast";
 import { useVendor } from "./hooks";
@@ -64,7 +65,8 @@ export default function VendorOrders() {
         ) : groups.length === 0 ? (
           <Note tone="gray" icon="share">{t("noOrders")}</Note>
         ) : (
-          groups.map(([dorm, list]) => (
+          <div className="grid items-start gap-3 md:grid-cols-2">
+          {groups.map(([dorm, list]) => (
             <section key={dorm} className="overflow-hidden rounded-card border border-line bg-surface">
               <div className="flex items-center gap-2 bg-primary-soft px-4 py-3">
                 <div className="flex-1">
@@ -105,10 +107,12 @@ export default function VendorOrders() {
                 </div>
               ))}
             </section>
-          ))
+          ))}
+          </div>
         )}
         <Button variant="secondary" href="/vendor/check"><Icon name="key" size={18} /> {t("checkCode")}</Button>
       </Page>
+      <BottomNav kind="vendor" active="orders" />
       {toast}
     </>
   );

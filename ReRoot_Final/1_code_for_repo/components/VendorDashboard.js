@@ -6,11 +6,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Badge, Button, Header, Icon, Note, Page } from "./ui";
 import { AlertCard, ResultsCard } from "./VendorCards";
 import ShareSheet from "./ShareSheet";
+import BottomNav from "./BottomNav";
+import AccountButton from "./AccountButton";
+import { useConfirm } from "./ConfirmDialog";
 import { SkeletonList } from "./States";
 import { useToast } from "./Toast";
 import { useVendor } from "./hooks";
 import { useT } from "./LangProvider";
-import { closeListing, listenVendorListings, listenVendorReservations, vendorSignOut } from "@/lib/data";
+import { closeListing, listenVendorListings, listenVendorReservations, signOut } from "@/lib/data";
 import { clockTime, isOpen, toMs } from "@/lib/time";
 
 export default function VendorDashboard() {
@@ -22,6 +25,7 @@ export default function VendorDashboard() {
   const [res, setRes] = useState([]);
   const [sharing, setSharing] = useState(null);
   const [toast, showToast] = useToast();
+  const [dialog, confirm] = useConfirm();
 
   useEffect(() => (vendor ? listenVendorListings(vendor.id, setListings) : undefined), [vendor]);
   useEffect(() => (vendor ? listenVendorReservations(vendor.id, setRes) : undefined), [vendor]);
@@ -53,7 +57,7 @@ export default function VendorDashboard() {
 
   return (
     <>
-      <Header title={vendor.name} brand />
+      <Header title={vendor.name} brand right={<AccountButton />} />
       <Page>
         <AlertCard />
         <Button href="/vendor/post"><Icon name="plus" size={20} /> {t("postDish")}</Button>
@@ -66,7 +70,8 @@ export default function VendorDashboard() {
         ) : today.length === 0 ? (
           <Note tone="gray" icon="bowl">{t("noListings")}</Note>
         ) : (
-          today.map((l) => {
+          <div className="grid gap-3 md:grid-cols-2">
+          {today.map((l) => {
             const open = isOpen(l);
             return (
               <div key={l.id} className="flex flex-col gap-2.5 rounded-card border border-line bg-surface p-3.5">
@@ -84,13 +89,14 @@ export default function VendorDashboard() {
                   {open && (
                     <>
                       <button onClick={() => setSharing(l)} className="flex flex-1 items-center justify-center gap-1.5 rounded-control bg-primary py-2.5 text-white"><Icon name="share" size={15} /> {t("share")}</button>
-                      <button onClick={() => closeListing(l.id)} className="flex-1 rounded-control border border-line py-2.5 text-muted">{t("closeListing")}</button>
+                      <button onClick={async () => { if (await confirm({ title: t("confirmClose"), body: t("confirmCloseBody"), confirmLabel: t("yesClose") })) closeListing(l.id); }} className="flex-1 rounded-control border border-line py-2.5 text-muted hover:border-danger hover:text-danger-ink">{t("closeListing")}</button>
                     </>
                   )}
                 </div>
               </div>
             );
-          })
+          })}
+          </div>
         )}
 
         <ResultsCard vendorId={vendor.id} refreshKey={claimedCount} />
@@ -99,11 +105,13 @@ export default function VendorDashboard() {
           <Button variant="secondary" href="/vendor/orders" className="text-[15px]">{t("ordersByDorm")}</Button>
           <Button variant="secondary" href="/vendor/check" className="text-[15px]">{t("checkCode")}</Button>
         </div>
-        <button onClick={async () => { await vendorSignOut(); router.replace("/vendor/login"); }} className="py-2 text-[13px] font-semibold text-muted">
+        <button onClick={async () => { if (!(await confirm({ title: t("confirmLogout"), body: t("confirmLogoutBody"), confirmLabel: t("signOutShort") }))) return; await signOut(); router.replace("/login"); }} className="py-2 text-[13px] font-semibold text-muted hover:text-ink">
           {t("signOut")}
         </button>
       </Page>
       {sharing && <ShareSheet listing={sharing} onClose={() => setSharing(null)} onCopied={() => showToast(t("copied"))} />}
+      <BottomNav kind="vendor" active="dashboard" />
+      {dialog}
       {toast}
     </>
   );

@@ -20,7 +20,7 @@ export default function ListingDetail() {
     return (
       <>
         <Header title={t("dishDetails")} back="/" />
-        <Page><SkeletonList n={1} /></Page>
+        <Page narrow><SkeletonList n={1} /></Page>
       </>
     );
   if (l === null)

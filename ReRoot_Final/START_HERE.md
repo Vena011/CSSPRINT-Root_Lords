@@ -4,6 +4,25 @@ Team Root Lords · CSSprint 2026 · package made Thu Oct 22, 8:40 PM
 
 Everything Lord, Lawrence and Aleia own is built and connected to the same names and demo data. JC's backend is what's left: `lib/db.js`, security rules, `/app/api/notify`, deploy and the seed script. When it plugs in, the app goes live.
 
+## UPDATE · Fri Oct 23, 12:35 AM: one login for everyone + full UI/UX checklist
+
+**What changed**
+- One login for everyone at `/login`. After signing up, the user picks Student or Vendor on `/onboarding`. Students can still reserve as guests.
+- New pages: forgot password, My orders, Account (profile, settings, log out), Help, Privacy Policy, Terms, 404, a loading screen and a splash screen.
+- New on existing screens: a welcome intro, search with a no-results state, bottom navigation, confirmation before cancel / close / log out, cancel a reservation, an iPad and desktop layout, hover and keyboard-focus states.
+- Demo logins: **nena@reroot.test** (vendor), **student@reroot.test** (student), any password.
+- Tested in a browser: sign-up as vendor and as student, guest reserve, cancel, my orders, edit profile, log out, forgot password, 404, the core loop, and phone / iPad / desktop widths. No errors.
+
+**Lawrence: if you already committed the 8:40 PM version**, copy these from `1_code_for_repo/` over your repo (if you edited any of them since, compare with `git diff` before committing):
+`app/` account, forgot, help, login, me, onboarding, privacy, terms (new folders), `app/loading.js`, `app/not-found.js`, `app/layout.js`, `app/page.js`, `app/globals.css`, `app/vendor/check/page.js`, `app/vendor/login/page.js`, `app/vendor/post/page.js` ·
+`components/` AccountButton, BottomNav, ConfirmDialog, InfoPage, ListingDetail, LoginForm, PickupCode, ReserveForm, ShareSheet, Splash, VendorDashboard, VendorOrders, WelcomeCard, hooks, ui ·
+`lib/copy.js`, `lib/demo-data.js`, `lib/mock.js`, `data/demo-seed.json`, `README.md`, `HANDOFF.md`.
+Suggested commits: `One login with role choice after sign-up` → `Add account, my orders and cancel` → `Add help, privacy, terms, 404, loading, splash` → `Add search, bottom nav, confirm dialogs` → `Responsive iPad and desktop layout`.
+
+**JC:** `HANDOFF.md` section 3 now has 3 more functions for `db.js`: `resetPassword`, `updateProfile` and `cancelReservation`, plus the `users/{uid}` collection and its rules. Section 5 lists every checklist item and where it is.
+
+---
+
 ## What's in this package
 
 | Folder / link | What it is | Who uses it |

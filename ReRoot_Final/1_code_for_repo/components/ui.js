@@ -28,6 +28,13 @@ const PATHS = {
   sharebox: "M12 3v12M8 7l4-4 4 4M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7",
   plussq: "M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2ZM12 8v8M8 12h8",
   copy: "M8 8h12v12H8zM4 16V4h12",
+  store: "M3 9l1.5-5h15L21 9M3 9h18v1a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0V9ZM5 12v8h14v-8M10 20v-5h4v5",
+  user: "M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z",
+  search: "M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z",
+  user: "M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z",
+  home: "M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3Z",
+  receipt: "M6 3h12v18l-3-2-3 2-3-2-3 2ZM9 8h6M9 12h6",
+  help: "M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4.5M12 17.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
   key: "M15 7a4 4 0 1 1-3.9 4.9L3 20v-3h3v-3h3l1.1-1.1A4 4 0 0 1 15 7ZM16 10h.01",
 };
 
@@ -40,8 +47,8 @@ export function Icon({ name, size = 20, className = "", strokeWidth = 2 }) {
 }
 
 const BTN = {
-  primary: "bg-primary text-white active:bg-primary-dark",
-  secondary: "bg-surface text-primary-dark border-[1.5px] border-primary active:bg-primary-soft",
+  primary: "bg-primary text-white hover:bg-primary-dark active:bg-primary-dark",
+  secondary: "bg-surface text-primary-dark border-[1.5px] border-primary hover:bg-primary-soft active:bg-primary-soft",
   disabled: "bg-disabled text-muted",
 };
 
@@ -98,7 +105,7 @@ export function Badge({ tone = "left", children }) {
 export function Chip({ selected, children, ...rest }) {
   return (
     <button
-      className={`h-10 rounded-full px-4 text-sm font-semibold ${selected ? "bg-primary text-white" : "border border-line bg-surface text-ink"}`}
+      className={`h-10 rounded-full px-4 text-sm font-semibold ${selected ? "bg-primary text-white" : "border border-line bg-surface text-ink hover:border-primary"}`}
       aria-pressed={selected}
       {...rest}
     >
@@ -126,7 +133,7 @@ export function Header({ title, back, brand, right }) {
   return (
     <header className="sticky top-0 z-20 flex h-14 items-center gap-2 border-b border-line bg-surface px-4">
       {back && (
-        <button aria-label="Back" className="-ml-1 p-1" onClick={() => (typeof back === "string" ? router.push(back) : router.back())}>
+        <button aria-label="Back" title="Back" className="-ml-1 rounded-lg p-1 hover:bg-bg" onClick={() => (typeof back === "string" ? router.push(back) : router.back())}>
           <Icon name="left" size={24} />
         </button>
       )}
@@ -137,13 +144,18 @@ export function Header({ title, back, brand, right }) {
   );
 }
 
-export function Page({ children, className = "" }) {
-  return <main className={`flex flex-1 flex-col gap-3 p-4 ${className}`}>{children}</main>;
+// narrow: forms and single-item screens stay readable on tablet/desktop.
+export function Page({ children, className = "", narrow = false }) {
+  return <main className={`flex flex-1 flex-col gap-3 p-4 md:p-6 ${narrow ? "mx-auto w-full max-w-xl" : "w-full"} ${className}`}>{children}</main>;
 }
 
 // Sticky bottom bar for the main action.
 export function Footer({ children }) {
-  return <div className="sticky bottom-0 z-10 border-t border-line bg-surface p-4">{children}</div>;
+  return (
+    <div className="sticky bottom-0 z-10 border-t border-line bg-surface p-4">
+      <div className="mx-auto w-full max-w-xl">{children}</div>
+    </div>
+  );
 }
 
 export function Note({ tone = "green", icon = "info", children }) {
@@ -161,5 +173,26 @@ export function DishThumb({ size = 76, icon = 32, className = "" }) {
     <div className={`flex shrink-0 items-center justify-center rounded-control bg-accent-soft text-accent ${className}`} style={{ width: size, height: size }}>
       <Icon name="bowl" size={icon} strokeWidth={1.8} />
     </div>
+  );
+}
+
+// Toggle switch for settings.
+export function Switch({ checked, onChange, label, description }) {
+  return (
+    <label className="flex cursor-pointer items-center gap-3 py-1">
+      <span className="flex-1">
+        <span className="block text-[15px] font-semibold">{label}</span>
+        {description && <span className="block text-[13px] text-muted">{description}</span>}
+      </span>
+      <button
+        type="button"
+        role="switch"
+        aria-checked={checked}
+        onClick={() => onChange(!checked)}
+        className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${checked ? "bg-primary" : "bg-line"}`}
+      >
+        <span className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow transition-all ${checked ? "left-[22px]" : "left-0.5"}`} />
+      </button>
+    </label>
   );
 }

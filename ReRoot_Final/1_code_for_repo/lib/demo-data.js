@@ -35,3 +35,6 @@ export const DEMO_RESERVATIONS = [
   { id: "r-seed3", listingId: "adobo", vendorId: "v1", name: "Bea L.", dorm: "asturias", qty: 3, pickupCode: "7752", status: "reserved", statusMsg: "student:otw", ageMin: 10 },
   { id: "r-seed4", listingId: "adobo", vendorId: "v1", name: "Carlo M.", dorm: "asturias", qty: 1, pickupCode: "2240", status: "reserved", statusMsg: "", ageMin: 5 },
 ];
+
+// Demo accounts (mock and seed): every vendor email above logs in as that vendor;
+// student@reroot.test is a student (Juan D., Dapitan Dorm).

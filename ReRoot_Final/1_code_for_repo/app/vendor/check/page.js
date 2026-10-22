@@ -3,6 +3,7 @@
 // V5 Enter pickup code
 import { useRef, useState } from "react";
 import { Button, Header, Icon, Page } from "@/components/ui";
+import BottomNav from "@/components/BottomNav";
 import { useVendor } from "@/components/hooks";
 import { useT } from "@/components/LangProvider";
 import { checkPickupCode } from "@/lib/data";
@@ -34,7 +35,7 @@ export default function CheckCode() {
   return (
     <form onSubmit={confirm} className="flex flex-1 flex-col">
       <Header title={t("checkTitle")} back="/vendor" />
-      <Page className="gap-4">
+      <Page narrow className="gap-4">
         <p className="text-[15px] text-muted">{t("checkBody")}</p>
         <label className="relative block cursor-text" onClick={() => input.current?.focus()}>
           <input
@@ -69,6 +70,7 @@ export default function CheckCode() {
           </div>
         )}
       </Page>
+      <BottomNav kind="vendor" active="check" />
     </form>
   );
 }

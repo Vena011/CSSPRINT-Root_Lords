@@ -37,3 +37,17 @@ body { background: #F1ECE2; color: var(--color-ink); font-family: var(--font-san
 .rr-shimmer { animation: rr-shimmer 1.2s ease-in-out infinite; }
 @keyframes rr-up { from { transform: translateY(100%) } to { transform: translateY(0) } }
 .rr-sheet { animation: rr-up .22s ease-out; }
+
+/* Keyboard focus: a clear ring on everything you can tab to */
+:focus-visible { outline: 3px solid rgba(47, 125, 79, .45); outline-offset: 2px; border-radius: 10px; }
+a, button, [role="switch"], select, input { -webkit-tap-highlight-color: transparent; }
+@media (hover: hover) { a:hover { text-decoration-color: currentColor; } }
+
+/* Splash screen */
+@keyframes rr-pop { 0% { transform: scale(.85); opacity: 0 } 100% { transform: scale(1); opacity: 1 } }
+.rr-splash { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: #1E5535; transition: opacity .35s ease; }
+.rr-splash img { animation: rr-pop .45s ease-out; }
+.rr-splash.rr-hide { opacity: 0; pointer-events: none; }
+@keyframes rr-spin { to { transform: rotate(360deg) } }
+.rr-spin { animation: rr-spin .9s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .rr-splash img, .rr-spin, .rr-shimmer, .rr-sheet { animation: none !important; } }

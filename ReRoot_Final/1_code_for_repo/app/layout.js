@@ -5,6 +5,7 @@ import "@fontsource/plus-jakarta-sans/700.css";
 import "@fontsource/plus-jakarta-sans/800.css";
 import "./globals.css";
 import { LangProvider } from "@/components/LangProvider";
+import Splash from "@/components/Splash";
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://reroot-rootlords.vercel.app"),
@@ -27,7 +28,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="antialiased">
         <LangProvider>
-          <div className="mx-auto flex min-h-dvh w-full max-w-[440px] flex-col bg-bg shadow-[0_0_40px_rgba(30,36,32,.06)]">
+          <div className="mx-auto flex min-h-dvh w-full max-w-[440px] flex-col bg-bg shadow-[0_0_40px_rgba(30,36,32,.06)] md:max-w-[820px] lg:max-w-[1160px]">
+            <Splash />
             {children}
           </div>
         </LangProvider>

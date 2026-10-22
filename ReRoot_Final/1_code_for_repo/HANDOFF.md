@@ -26,7 +26,7 @@ Commit in small pieces so the history shows steady work, e.g.
 
 ## 2. Test the demo before Firebase (2 tabs)
 1. Tab A: `/`. Tap Chicken Adobo, reserve 2 servings, and you get a pickup code.
-2. Tab B: `/vendor`. Log in with **nena@reroot.test** (any password), then open Orders. The new order is there, grouped by dorm.
+2. Tab B: `/login`. Log in with **nena@reroot.test** (any password, 6+ characters), then open Orders. The new order is there, grouped by dorm. Also try **Sign up** with a new email: you choose Student or Vendor on `/onboarding`. Demo student account: student@reroot.test.
 3. Tap "Ready na po" in tab B, and tab A shows it live. Enter the code in "Check code" and it's claimed. The results card updates.
 4. Post a dish. The share sheet opens. The new dish appears on the student home in tab A without refreshing.
 
@@ -41,8 +41,13 @@ In `lib/data.js`, change `export * from "./mock";` to `export * from "./db";`, t
 | `checkPickupCode()` | Return the reservation, or throw when it isn't found |
 | `listenReservation(id, cb)` | Pickup screen (live vendor message and claimed state) |
 | `listenVendorListings(vendorId, cb)` | Dashboard "Today's listings", including closed ones |
-| `onVendorAuth(cb)` | Calls `cb(vendorDoc or null)`. Wrap `onAuthStateChanged` and load `vendors where ownerUid == uid`. Every listener returns an unsubscribe function. |
-| `vendorSignIn(email, pw)`, `vendorSignUp(email, pw, {name,address,lat,lng})`, `vendorSignOut()` | Email/password auth. Sign-up calls createVendor. |
+| `onAuth(cb)` | ONE login for everyone. Calls `cb(user or null)` where `user = { uid, email, role, name, dorm, vendorId, vendor }` (`role` is `null` until onboarding, then `"student"` or `"vendor"`; `vendor` = the vendor doc when role is vendor). Wrap `onAuthStateChanged` + read `users/{uid}`. Returns an unsubscribe function, like every listener. |
+| `signIn(email, pw)` → user, `signUp(email, pw)`, `signOut()` | Firebase email/password. `signUp` creates `users/{uid}` with `role: null`. |
+| `completeProfile(role, data)` → user | After sign-up (`/onboarding`). Student: `{name, dorm}` saved on `users/{uid}`. Vendor: `{name, address, lat, lng}` → `createVendor(...)`, then `users/{uid}.vendorId` + `role: "vendor"`. Rules: a user writes only their own `users/{uid}`, and `role` can be set once. |
+| Guest students | Still allowed: reserving without an account uses anonymous sign-in as before (`ensureStudentAuth`). |
+| `resetPassword(email)` | `/forgot`. Firebase `sendPasswordResetEmail(auth, email)`. Resolve even if the email has no account (the page shows the same message either way). |
+| `updateProfile(data)` → user | `/account`. Student: `{name, dorm}` on `users/{uid}`. Vendor: `{name, address}` on `users/{uid}` and `vendors/{vendorId}`. |
+| `cancelReservation(id)` | Pickup screen "Cancel reservation". `runTransaction`: only if status is `reserved` → `cancelled`; add `qty` back to `servingsLeft`, `ordersLeft + 1`; reopen the listing if it closed by selling out and the cutoff hasn't passed (not if the vendor closed it: set `closedByVendor: true` in `closeListing`). Rules: the student who made it can cancel it. |
 | `getDemandAlert()` | Returns `{ show, reason: "rain" or "suspension", probability }` (J6 Open-Meteo + settings/today) |
 | `enablePush({lat,lng,radiusM})` | J7. Returns true if granted. Saves the token to pushTokens. |
 
@@ -59,10 +64,32 @@ After posting, the vendor app calls `POST /api/notify {listingId}` (J7). It fail
 | Geolocation fallback to UST | `components/hooks.js` → `usePosition()` |
 | Radius and view remembered | `useStored()` (localStorage in try/catch) |
 | S2 / S3 / S4 | `components/ListingDetail.js`, `ReserveForm.js` (keeps `?dorm=`), `PickupCode.js` (quick status) |
-| V1–V5 | `app/vendor/login`, `VendorDashboard.js` (alert V6 + results V8), `app/vendor/post`, `VendorOrders.js` (grouped by dorm + Share per dorm + vendor quick status), `app/vendor/check` |
+| Login + role choice | `app/login` + `components/LoginForm.js` (one login for everyone, guest option), `app/onboarding` (Student or Vendor, then their details), `components/AccountButton.js` (header). `/vendor/login` redirects to `/login`. |
+| V1–V5 | `VendorDashboard.js` (alert V6 + results V8), `app/vendor/post`, `VendorOrders.js` (grouped by dorm + Share per dorm + vendor quick status), `app/vendor/check` |
 | V7 share sheet | `components/ShareSheet.js` (Web Share API, copy-link fallback, dorm links `?dorm=`) |
 | W6 FIL/EN | `lib/copy.js` + `components/LangProvider.js`. Vendors default to FIL, students to EN, and the toggle in the header is remembered. **Aleia: replace the draft text, keep the keys.** |
 | W7 notifications | `components/NotifyOptIn.js` (iPhone Add-to-Home-Screen steps, denied state) |
 | States | `components/States.js` (empty, loading skeleton, error), sold-out toast and disabled button in `ReserveForm.js` |
 
 Demo data lives in ONE place: `lib/demo-data.js` (vendors, dishes, sample orders) and `lib/dorms.js`. JC's seed script should read `data/demo-seed.json` (same data). `cutoffMin` / `ageMin` are minutes relative to seed time, so the demo works at any hour. The fake data layer re-seeds itself if the saved demo is more than 6 hours old.
+
+## 5. Added for the UI/UX checklist (Oct 23, 12:30 AM)
+| Checklist item | Where |
+| --- | --- |
+| Splash screen | `components/Splash.js` (logo on first load per session, rendered in `app/layout.js`) |
+| Loading screen | `app/loading.js` (spinner) + skeletons in `components/States.js` |
+| Welcome / landing | `components/WelcomeCard.js` on the student home (how it works in 3 steps; dismiss is remembered) |
+| Login / sign-up / role | `/login` (one login for everyone, tabs), `/onboarding` (Student or Vendor after sign-up), `/vendor/login` redirects to `/login` |
+| Forgot password | `/forgot` (`resetPassword`) |
+| Validation + errors | Login, sign-up, onboarding, reserve, post, check code, account |
+| Navigation | Header on every screen, `components/BottomNav.js`: student Home / My orders / Account, vendor Dashboard / Post / Orders / Code |
+| Search + no results | Student home search box (dish or carinderia) with a "No dishes match" state |
+| List / detail / create / edit | Home list + map, `/l/[id]`, `/vendor/post`, `/account` edits profile, vendor can close a listing |
+| My orders | `/me` (reservation ids saved on the phone, live status) |
+| Profile + settings + logout | `/account`: profile edit, language, notifications switch, default radius, help/privacy/terms, log out |
+| Confirm before destructive actions | `components/ConfirmDialog.js`: cancel reservation, close listing, log out (Esc closes) |
+| Toasts, modals, tabs, switch | `Toast.js`, `ShareSheet.js` (Esc closes), login tabs, `Switch` in `ui.js` |
+| 404, help, privacy, terms | `app/not-found.js`, `/help`, `/privacy` (Data Privacy Act RA 10173), `/terms` |
+| Responsive | Phone one column; iPad (768 px+) two-column card grids; desktop (1024 px+) three columns, max width 1160 px; forms stay max 576 px wide |
+| Hover / focus / active | Button, chip, link hovers; visible focus ring for keyboard users (`globals.css`); reduced-motion respected |
+

@@ -5,7 +5,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Button, DishThumb, Footer, Header, Icon, Input, Note, Page, Select } from "./ui";
 import { SkeletonList } from "./States";
 import { useToast } from "./Toast";
-import { rememberVendor } from "./hooks";
+import { addMyReservation, rememberVendor, useUser } from "./hooks";
 import { useT } from "./LangProvider";
 import { listenListing, reserve } from "@/lib/data";
 import { DORMS } from "@/lib/dorms";
@@ -26,14 +26,22 @@ export default function ReserveForm() {
   const [busy, setBusy] = useState(false);
   const [soldOut, setSoldOut] = useState(false);
   const [toast, showToast] = useToast();
+  const { user } = useUser();
 
   useEffect(() => listenListing(id, setL), [id]);
   useEffect(() => {
     try {
       // eslint-disable-next-line react-hooks/set-state-in-effect -- reading browser-only state after hydration
-      setName(localStorage.getItem("reroot-name") || "");
+      setName((n) => n || localStorage.getItem("reroot-name") || "");
     } catch {}
   }, []);
+  // Signed-in students: fill in their saved name and dorm (a ?dorm= link still wins).
+  useEffect(() => {
+    if (user?.role !== "student") return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- syncing from the auth listener
+    if (user.name) setName((n) => n || user.name);
+    if (user.dorm) setDorm((d) => d || user.dorm);
+  }, [user]);
 
   if (l === undefined) return (<><Header title={t("reserveTitle")} back /><Page><SkeletonList n={1} /></Page></>);
 
@@ -57,6 +65,7 @@ export default function ReserveForm() {
         localStorage.setItem("reroot-name", name.trim());
       } catch {}
       rememberVendor(l.vendorId);
+      addMyReservation(resId);
       router.replace(`/r/${resId}`);
     } catch (err) {
       setBusy(false);
@@ -70,7 +79,7 @@ export default function ReserveForm() {
   return (
     <form onSubmit={submit} className="flex flex-1 flex-col" noValidate>
       <Header title={t("reserveTitle")} back />
-      <Page className="gap-4">
+      <Page narrow className="gap-4">
         {l && (
           <div className="flex items-center gap-3 rounded-card border border-line bg-surface p-3">
             <DishThumb size={52} icon={26} />

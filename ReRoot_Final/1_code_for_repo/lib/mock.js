@@ -6,13 +6,13 @@
 //
 // Extra functions the screens need that are NOT in Section 5 yet (JC, please
 // add them to db.js with the same names): listenReservation, listenVendorListings,
-// vendorSignIn, vendorSignUp, vendorSignOut, onVendorAuth, getDemandAlert, enablePush.
+// onAuth, signIn, signUp, completeProfile, signOut, getDemandAlert, enablePush.
 
 import { UST } from "./geo";
 import { DEMO_LISTINGS, DEMO_RESERVATIONS, DEMO_VENDORS } from "./demo-data";
 
-const KEY = "reroot-mock-v2";
-const SESSION = "reroot-mock-vendor";
+const KEY = "reroot-mock-v3";
+const SESSION = "reroot-mock-user";
 const listeners = new Set();
 let state = null;
 
@@ -28,7 +28,11 @@ function seed() {
     return { ...l, vendorName: v.name, lat: v.lat, lng: v.lng, status: "open", cutoffAt: t + cutoffMin * 60000, createdAt: t - 30 * 60000 };
   });
   const reservations = DEMO_RESERVATIONS.map(({ ageMin, ...r }) => ({ ...r, studentUid: "seed", createdAt: t - ageMin * 60000 }));
-  return { vendors, listings, reservations, seededAt: t };
+  const users = [
+    ...vendors.map((v) => ({ uid: "u-" + v.id, email: v.email, role: "vendor", name: v.name, dorm: "", vendorId: v.id, createdAt: t })),
+    { uid: "u-student", email: "student@reroot.test", role: "student", name: "Juan D.", dorm: "dapitan", vendorId: null, createdAt: t },
+  ];
+  return { vendors, listings, reservations, users, seededAt: t };
 }
 
 function load() {
@@ -166,6 +170,7 @@ export async function closeListing(id) {
   const l = load().listings.find((x) => x.id === id);
   if (l) {
     l.status = "closed";
+    l.closedByVendor = true;
     save();
   }
 }
@@ -194,33 +199,56 @@ export function listenVendorListings(vendorId, cb) {
   return watch(() => cb(clone(load().listings.filter((l) => l.vendorId === vendorId))));
 }
 
-export function onVendorAuth(cb) {
-  return watch(() => {
-    let email = null;
-    try {
-      email = localStorage.getItem(SESSION);
-    } catch {}
-    cb(clone(load().vendors.find((v) => v.email === email) ?? null));
-  });
+// ---------- accounts: one login for everyone, role chosen after sign-up ----------
+// users: { uid, email, role: null | "student" | "vendor", name, dorm, vendorId }
+const me = () => {
+  let email = null;
+  try {
+    email = localStorage.getItem(SESSION);
+  } catch {}
+  return email ? load().users.find((u) => u.email === email) ?? null : null;
+};
+const withVendor = (u) => (u ? { ...clone(u), vendor: clone(load().vendors.find((v) => v.id === u.vendorId) ?? null) } : null);
+
+// cb(user | null); user = { uid, email, role, name, dorm, vendorId, vendor }
+export function onAuth(cb) {
+  return watch(() => cb(withVendor(me())));
 }
 
-export async function vendorSignIn(email) {
-  const v = load().vendors.find((x) => x.email === email.trim().toLowerCase());
-  if (!v) throw new Error("NOT_FOUND");
-  localStorage.setItem(SESSION, v.email);
+export async function signIn(email) {
+  const u = load().users.find((x) => x.email === email.trim().toLowerCase());
+  if (!u) throw new Error("NOT_FOUND");
+  localStorage.setItem(SESSION, u.email);
   save();
-  return clone(v);
+  return withVendor(u);
 }
 
-export async function vendorSignUp(email, _password, profile) {
+export async function signUp(email) {
   const e = email.trim().toLowerCase();
-  if (load().vendors.some((v) => v.email === e)) throw new Error("EMAIL_IN_USE");
-  await createVendor({ email: e, ownerUid: e, ...profile });
+  const s = load();
+  if (s.users.some((u) => u.email === e)) throw new Error("EMAIL_IN_USE");
+  s.users.push({ uid: "u-" + uid(), email: e, role: null, name: "", dorm: "", vendorId: null, createdAt: now() });
   localStorage.setItem(SESSION, e);
   save();
 }
 
-export async function vendorSignOut() {
+// After sign-up: role "student" → { name, dorm }; role "vendor" → { name, address, lat, lng }
+export async function completeProfile(role, data) {
+  const u = me();
+  if (!u) throw new Error("NOT_SIGNED_IN");
+  if (role === "vendor") {
+    u.vendorId = await createVendor({ name: data.name, address: data.address, lat: data.lat, lng: data.lng, email: u.email, ownerUid: u.uid });
+    u.name = data.name;
+  } else {
+    u.name = data.name;
+    u.dorm = data.dorm;
+  }
+  u.role = role;
+  save();
+  return withVendor(u);
+}
+
+export async function signOut() {
   localStorage.removeItem(SESSION);
   save();
 }
@@ -235,6 +263,45 @@ export async function enablePush() {
   if (typeof Notification === "undefined") return false;
   const p = await Notification.requestPermission();
   return p === "granted";
+}
+
+// ---------- checklist additions (JC: mirror these in db.js) ----------
+// Firebase: sendPasswordResetEmail(auth, email). Always resolves, so the page never reveals which emails exist.
+export async function resetPassword(email) {
+  await new Promise((r) => setTimeout(r, 400));
+  return !!email;
+}
+
+// Student: { name, dorm } on users/{uid}. Vendor: { name, address } on users/{uid} and vendors/{vendorId}.
+export async function updateProfile(data) {
+  const u = me();
+  if (!u) throw new Error("NOT_SIGNED_IN");
+  if (data.name != null) u.name = data.name;
+  if (u.role === "student" && data.dorm != null) u.dorm = data.dorm;
+  if (u.role === "vendor") {
+    const v = load().vendors.find((x) => x.id === u.vendorId);
+    if (v) {
+      if (data.name != null) v.name = data.name;
+      if (data.address != null) v.address = data.address;
+    }
+  }
+  save();
+  return withVendor(u);
+}
+
+// runTransaction: status reserved → cancelled, give servings and the order slot back, reopen if it had closed by selling out.
+export async function cancelReservation(reservationId) {
+  const s = load();
+  const r = s.reservations.find((x) => x.id === reservationId);
+  if (!r || r.status !== "reserved") throw new Error("NOT_CANCELLABLE");
+  r.status = "cancelled";
+  const l = s.listings.find((x) => x.id === r.listingId);
+  if (l) {
+    l.servingsLeft += r.qty;
+    l.ordersLeft += 1;
+    if (l.status === "closed" && l.cutoffAt > now() && !l.closedByVendor) l.status = "open";
+  }
+  save();
 }
 
 export function resetMock() {

@@ -57,8 +57,9 @@ Small food vendors near UST cook or prepare food **before** customers arrive. Wh
 **What makes it new**
 1. **Event-triggered:** a low-demand alert built on a real rain forecast and class suspensions warns vendors in the morning, so they can cook less or post early.
 2. **Nothing to install:** listings travel through the dorm group chats students already use, as a link with a preview card.
-3. **Orders pool by dorm:** each dorm gets its own link, so orders group by building and one walk to the lobby serves many students.
-4. **No commission:** free for vendors, free for students.
+3. **No account needed to buy:** students can reserve as guests; an account only saves their name and dorm.
+4. **Orders pool by dorm:** each dorm gets its own link, so orders group by building and one walk to the lobby serves many students.
+5. **No commission:** free for vendors, free for students.
 
 ### Features
 
@@ -66,7 +67,8 @@ Small food vendors near UST cook or prepare food **before** customers arrive. Wh
 | --- | --- |
 | Vendor posts a dish in seconds: name, servings, lower price or bigger serving, cutoff, max orders | 1 |
 | Live availability ("4 of 12 left") and auto-close when sold out, full, or past cutoff | 1 |
-| Student reserves with no account (name, dorm, servings) and gets a 4-digit pickup code | 1 |
+| One login for everyone; after sign-up the user chooses **Student** or **Vendor** | 1 |
+| Student reserves as a guest or with an account (saved name and dorm) and gets a 4-digit pickup code | 1 |
 | Vendor sees orders grouped by dorm and confirms the pickup code | 1 |
 | Student home: top 3 recommendations, then nearby vendors by radius (300 m / 500 m / 1 km), list or map | 2 |
 | Low-demand alert from the Open-Meteo rain forecast and a class-suspension switch | 2 |
@@ -75,6 +77,9 @@ Small food vendors near UST cook or prepare food **before** customers arrive. Wh
 | Push notification when a nearby vendor posts | 3 |
 | Quick status taps: "Papunta na ako", "Nasa lobby na ako", "Ready na po" | 3 |
 | Results card: servings saved and pesos recovered today | 3 |
+| One login for everyone; choose Student or Vendor after sign-up; students can also reserve as guests | Account |
+| My orders, cancel a reservation, profile and settings (language, notifications, default radius), forgot password | Account |
+| Search, splash, welcome intro, 404, help, privacy policy, terms; phone, iPad and desktop layouts | UX |
 
 <!-- A9 / final check: remove any row that does not work on the live app and move it to the Roadmap. -->
 
@@ -96,7 +101,7 @@ Small food vendors near UST cook or prepare food **before** customers arrive. Wh
 | --- | --- |
 | Framework | Next.js (App Router, JavaScript) + Tailwind CSS |
 | Database + realtime | Cloud Firestore (asia-southeast1) |
-| Login | Firebase Auth: email/password for vendors, anonymous sign-in for students |
+| Login | Firebase Auth email/password for everyone, role (student or vendor) chosen after sign-up; anonymous sign-in for guest students |
 | Push | Firebase Cloud Messaging (web push) + a Next.js API route using firebase-admin |
 | Map | Leaflet + react-leaflet with OpenStreetMap tiles |
 | Weather | Open-Meteo forecast API (Sampaloc, 14.61, 120.99) |
@@ -117,12 +122,12 @@ npm run dev                  # http://localhost:3000
 
 Environment variables (names only): `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`, `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`, `NEXT_PUBLIC_FIREBASE_APP_ID`, `NEXT_PUBLIC_FIREBASE_VAPID_KEY`, `FIREBASE_SERVICE_ACCOUNT` (server only).
 
-**Demo vendor login:** nena@reroot.test (demo data in `data/demo-seed.json`).
+**Demo logins:** vendor nena@reroot.test, student student@reroot.test (demo data in `data/demo-seed.json`). New users sign up at `/login` and pick Student or Vendor.
 
 ### Folder structure
 
 ```
-app/            pages (student: /, /l/[id], /l/[id]/reserve, /r/[id]; vendor: /vendor/...)
+app/            pages (/login, /onboarding; student: /, /l/[id], /l/[id]/reserve, /r/[id]; vendor: /vendor/...)
 app/api/        server routes (push notifications)
 components/     UI components (ListingCard, ShareSheet, MapView, ...)
 lib/            data layer (db.js), copy (EN/FIL), ranking, geo, demo data

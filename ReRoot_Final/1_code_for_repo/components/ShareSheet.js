@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, DishThumb, Icon } from "./ui";
 import { useT } from "./LangProvider";
 import { DORMS } from "@/lib/dorms";
@@ -33,6 +33,11 @@ export async function shareListing({ listing, dormId, t, onCopied }) {
 export default function ShareSheet({ listing, initialDorm = "dapitan", onClose, onCopied }) {
   const t = useT();
   const [dorm, setDorm] = useState(initialDorm);
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose?.();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
   if (!listing) return null;
   const options = [...DORMS.filter((d) => d.id !== "other"), { id: "all", name: t("allDorms") }];
   const copy = async () => {

@@ -1,5 +1,43 @@
 {
-  "note": "Generated from lib/demo-data.js. cutoffMin and ageMin are minutes relative to seed time. Vendors need Firebase Auth accounts (email/password) created by the seed script.",
+  "note": "Generated from lib/demo-data.js. cutoffMin and ageMin are minutes relative to seed time. Create a Firebase Auth email/password account for each user (demo password of your choice, 6+ chars) and a users/{uid} doc with its role.",
+  "users": [
+    {
+      "email": "nena@reroot.test",
+      "role": "vendor",
+      "name": "Aling Nena's Carinderia",
+      "vendorId": "v1"
+    },
+    {
+      "email": "ben@reroot.test",
+      "role": "vendor",
+      "name": "Kuya Ben Shakes",
+      "vendorId": "v2"
+    },
+    {
+      "email": "tess@reroot.test",
+      "role": "vendor",
+      "name": "Lutong Bahay ni Tess",
+      "vendorId": "v3"
+    },
+    {
+      "email": "lacson@reroot.test",
+      "role": "vendor",
+      "name": "Kusina sa Lacson",
+      "vendorId": "v4"
+    },
+    {
+      "email": "ramon@reroot.test",
+      "role": "vendor",
+      "name": "Mang Ramon's Turo-Turo",
+      "vendorId": "v5"
+    },
+    {
+      "email": "student@reroot.test",
+      "role": "student",
+      "name": "Juan D.",
+      "dorm": "dapitan"
+    }
+  ],
   "vendors": [
     {
       "id": "v1",

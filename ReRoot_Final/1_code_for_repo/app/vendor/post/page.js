@@ -62,7 +62,7 @@ export default function PostDish() {
   return (
     <form onSubmit={submit} className="flex flex-1 flex-col" noValidate>
       <Header title={t("postDish")} back="/vendor" />
-      <Page className="gap-3.5">
+      <Page narrow className="gap-3.5">
         <Input label={t("dishName")} placeholder={t("dishNamePh")} value={f.dish} onChange={set("dish")} maxLength={40} />
         <div className="flex gap-3">
           <Input label={t("servingsTotal")} type="number" inputMode="numeric" min="1" placeholder="12" value={f.servings} onChange={set("servings")} />

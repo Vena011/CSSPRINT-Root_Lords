@@ -7,6 +7,9 @@ import Link from "next/link";
 import { Chip, Header, Icon, Note, Page, Button } from "@/components/ui";
 import ListingCard from "@/components/ListingCard";
 import NotifyOptIn from "@/components/NotifyOptIn";
+import AccountButton from "@/components/AccountButton";
+import BottomNav from "@/components/BottomNav";
+import WelcomeCard from "@/components/WelcomeCard";
 import { EmptyState, ErrorState, SkeletonList } from "@/components/States";
 import { boughtFrom, usePosition, useStored } from "@/components/hooks";
 import { useT } from "@/components/LangProvider";
@@ -28,6 +31,7 @@ export default function Home() {
   const [listings, setListings] = useState(null);
   const [error, setError] = useState(false);
   const [tick, setTick] = useState(0);
+  const [q, setQ] = useState("");
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- reading browser-only state after hydration
@@ -50,11 +54,22 @@ export default function Home() {
     () => (listings ? rankListings(listings, pos, radius, boughtFrom()) : null),
     [listings, pos, radius]
   );
+  // Search filters the ranked results by dish or vendor name.
+  const needle = q.trim().toLowerCase();
+  const match = ({ listing: l }) => !needle || `${l.dish} ${l.vendorName}`.toLowerCase().includes(needle);
+  const shown = ranked && { recommended: needle ? [] : ranked.recommended, rest: needle ? ranked.all.filter(match).sort((a, b) => a.distance - b.distance) : ranked.rest };
+  const GRID = "grid gap-3 md:grid-cols-2 lg:grid-cols-3";
 
   return (
     <>
-      <Header title={t("appName")} brand />
+      <Header title={t("appName")} brand right={<AccountButton />} />
       <Page>
+        <WelcomeCard />
+        <label className="relative block">
+          <span className="sr-only">{t("searchPh")}</span>
+          <Icon name="search" size={18} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-muted" />
+          <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={t("searchPh")} className="h-12 w-full rounded-full border-[1.5px] border-line bg-surface pl-10 pr-4 text-[15px] outline-none placeholder:text-muted focus:border-primary" />
+        </label>
         <div className="flex items-center gap-1.5">
           <Icon name="pin" size={18} className="text-primary" />
           <span className="flex-1 text-sm font-semibold">{pos.fallback ? t("nearUST") : t("nearYou")}</span>
@@ -83,33 +98,44 @@ export default function Home() {
           <SkeletonList />
         ) : ranked.all.length === 0 ? (
           <EmptyState action={radius < 1000 && <Button variant="secondary" onClick={() => setRadius(1000)}>{t("tryWider")}</Button>} />
+        ) : needle && shown.rest.length === 0 ? (
+          <EmptyState title={t("noResults", { q: q.trim() })} body={t("noResultsBody")} action={<Button variant="secondary" onClick={() => setQ("")}>{t("clearSearch")}</Button>} />
         ) : view === "map" ? (
-          <MapView center={pos} radius={radius} items={[...ranked.recommended, ...ranked.rest]} />
+          <MapView center={pos} radius={radius} items={needle ? shown.rest : [...ranked.recommended, ...ranked.rest]} />
         ) : (
           <>
-            <h2 className="mt-1 flex items-center gap-1.5 text-base font-bold">
-              <Icon name="spark" size={18} className="text-accent" /> {t("recommended")}
-            </h2>
-            {ranked.recommended.map(({ listing, distance }) => (
-              <ListingCard key={listing.id} listing={listing} distance={distance} />
-            ))}
-            {ranked.rest.length > 0 && (
+            {shown.recommended.length > 0 && (
+              <>
+                <h2 className="mt-1 flex items-center gap-1.5 text-base font-bold">
+                  <Icon name="spark" size={18} className="text-accent" /> {t("recommended")}
+                </h2>
+                <div className={GRID}>
+                  {shown.recommended.map(({ listing, distance }) => (
+                    <ListingCard key={listing.id} listing={listing} distance={distance} />
+                  ))}
+                </div>
+              </>
+            )}
+            {shown.rest.length > 0 && (
               <h2 className="mt-1 flex items-baseline gap-2 text-base font-bold">
-                {t("allNearby")} <span className="text-[13px] font-medium text-muted">{t("openCount", { n: ranked.all.length })}</span>
+                {t("allNearby")} <span className="text-[13px] font-medium text-muted">{t("openCount", { n: needle ? shown.rest.length : ranked.all.length })}</span>
               </h2>
             )}
-            {ranked.rest.map(({ listing, distance }) => (
-              <ListingCard key={listing.id} listing={listing} distance={distance} />
-            ))}
+            <div className={GRID}>
+              {shown.rest.map(({ listing, distance }) => (
+                <ListingCard key={listing.id} listing={listing} distance={distance} />
+              ))}
+            </div>
           </>
         )}
 
         <NotifyOptIn position={{ lat: pos.lat, lng: pos.lng }} radius={radius} />
 
-        <Link href="/vendor/login" className="mt-auto py-3 text-center text-[13px] font-semibold text-primary">
+        <Link href="/login?next=/vendor" className="mt-auto py-3 text-center text-[13px] font-semibold text-primary">
           {t("vendorCta")} →
         </Link>
       </Page>
+      <BottomNav kind="student" active="home" />
     </>
   );
 }
