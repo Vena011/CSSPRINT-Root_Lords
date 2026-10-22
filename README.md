@@ -1,16 +1,16 @@
 # ReRoot
 
-**Rerouting already-cooked surplus from campus carinderias to the students nearby.**
+**Rerouting surplus food from small food vendors near UST to the customers nearby, before it spoils.**
 
 Team **Root Lords** · CSSprint 2026: *Rooted in Innovation* · UST Computer Science Society
 
-> Status: Day 1 initial project document (October 22, 2026).
+> Status: Day 1 initial project document (October 22, 2026). Includes our vendor interviews and España Boulevard field observations.
 
 ---
 
 ## 1. Problem
 
-Small food vendors near the University of Santo Tomas, such as cook-ahead carinderias and food stalls that pre-cut fruit or prepare ingredients, prepare perishable food before customers arrive. Whatever is not sold is taken home, given away, or thrown out, and the money spent on ingredients is lost. The loss is worst on **low-demand days**, such as class suspensions and heavy-rain days, when most student customers stay in their dorms or go home. These owners have no affordable way to reach the students who are still nearby: delivery apps take too large a commission, and a Facebook post cannot coordinate orders.
+Small food vendors near the University of Santo Tomas, such as cook-ahead carinderias and food stalls that pre-cut fruit or prepare ingredients, prepare perishable food before customers arrive. Whatever is not sold is taken home, given away, or thrown out, and the money spent on ingredients is lost. The loss is worst on **low-demand days**, such as class suspensions and heavy-rain days, when most student customers stay in their dorms or go home. Many are also hard to find: they sit in side streets and alleys, often with no Google Maps listing, and compete with other carinderias, fast-food chains, and convenience stores. Most stalls are small, with little storage or refrigeration, so prepared food cannot wait for a better day. These owners have no affordable way to reach the customers who are still nearby: delivery apps take too large a commission, and a Facebook post cannot coordinate orders.
 
 **In one sentence:** prepare-ahead micro food vendors near UST lose money on food surplus (cooked dishes and prepared perishables) because demand drops without warning and they have no affordable, fast way to reach the customers still nearby.
 
@@ -28,7 +28,7 @@ Small food vendors near the University of Santo Tomas, such as cook-ahead carind
 
 ### Field evidence (interviews near UST, October 22, 2026)
 
-We interviewed two long-running food vendors near UST with signed consent forms. Both prepare food only when ordered or prepare small batches, so this is a small sample of first-hand signals that we pair with the published research above, not statistics. Interviewing larger cook-ahead carinderias is part of our pilot plan.
+We interviewed two long-running food vendors near UST with signed consent forms. One cooks only to order; the other buys fruit in bulk and pre-cuts it. This is a small sample of first-hand signals that we pair with the published research and our field observations, not statistics. Interviewing larger cook-ahead carinderias is part of our pilot plan.
 
 | Measure | Interviewee 1: carinderia (36 years) | Interviewee 2: fruit shake stall (since 2013) |
 |---|---|---|
@@ -40,11 +40,23 @@ We interviewed two long-running food vendors near UST with signed consent forms.
 | Handles surplus by | Not applicable | Does not discount; gives bigger portions so fruit is not wasted |
 | Would use the app? | Yes, "kung makakatulong" | Yes; wants both alerts and visibility; likes showing "kung ano 'yung available" |
 
+### Field observations: España Boulevard (October 22, 2026)
+
+We walked the food stalls along España Boulevard and its side streets near UST and spoke with vendors.
+
+- **Crowded, similar offerings.** Stalls line España from end to end. Vendors said competition from other carinderias, fast-food chains, and convenience stores cuts their sales. Many sell similar food and compete mainly on price.
+- **Mixed customers.** Buyers include students, residents, and people working in the area.
+- **Hard to find.** Many carinderias are deep in side streets or alleys and have no Google Maps listing or online presence.
+- **Small spaces, little storage.** Most stalls are small, so storage and refrigeration are limited, and prepared ingredients and dishes spoil faster.
+- **Waste also comes from preparation.** Peels, spoiled ingredients, and ingredients that sit unused too long add to waste.
+- **Fresh-fruit stalls are most exposed.** Shake stands and other fruit-based sellers lose ingredients fastest when there is surplus, which matches our shake vendor interview.
+
 **What we learned**
 
 - **Surplus comes from preparing ahead.** The vendor who pre-cuts perishables reported spoilage and large slow-day losses; the cook-to-order carinderia did not. This confirms our target: prepare-ahead vendors.
 - **Slow days hurt both,** matching the suspension data above.
-- **Both struggle to be found among competitors,** and both said they would use an app that shows nearby customers what is available.
+- **Being found is the real gap.** Both interviewees named competition as their biggest problem, and our field observations show many stalls have no online presence at all. Both said they would use an app that shows nearby customers what is available.
+- **Surplus cannot wait.** With little storage, prepared food has to be sold the same day, so speed of reaching buyers matters more than storage tricks.
 - **Discounts are not the only deal.** The shake vendor gives bigger portions instead of lowering prices, so ReRoot lets vendors offer either a lower price or a bigger serving.
 
 
@@ -57,9 +69,9 @@ We interviewed two long-running food vendors near UST with signed consent forms.
 | **MSME size** | Micro enterprises: up to ₱3M assets and 9 or fewer workers [1][15][16] |
 | **Sector** | Accommodation and Food Service Activities: 190,899 MSMEs, 15.37% of all MSMEs [1] |
 | **Business model** | Prepare-ahead vendors: cook-ahead carinderias and turo-turo stalls, and food stalls that pre-cut fruit or prepare perishable ingredients. They commit money to food before any customer arrives. Our interviews confirmed that cook-to-order eateries have little surplus. |
-| **Place** | Sampaloc, Manila: streets around UST (Dapitan, Asturias, P. Noval, Lacson) |
+| **Place** | Sampaloc, Manila: España Boulevard and the streets around UST (Dapitan, Asturias, P. Noval, Lacson) |
 | **Primary user** | Owners of prepare-ahead food stalls and carinderias near UST |
-| **Secondary user** | Students living in dorms and boarding houses near UST |
+| **Secondary user** | Students living in dorms and boarding houses near UST (MVP focus); nearby residents and workers next |
 
 **Why MSMEs specifically:** large food chains already have POS data, planning teams, delivery contracts, and formal waste programs [12]. A carinderia has a notebook and gut feel. One day of unsold food can erase several days of profit.
 
@@ -67,15 +79,15 @@ We interviewed two long-running food vendors near UST with signed consent forms.
 
 ## 3. Solution
 
-ReRoot is a mobile web app that helps carinderia owners avoid and recover losses on low-demand days.
+ReRoot is a mobile web app that helps prepare-ahead food vendors near UST get found by nearby customers and sell their surplus before it spoils, especially on low-demand days.
 
 ### MVP flow
 
-1. **Low-demand alert.** In the morning, owners get a warning when a low-demand day is likely, based on a real rain forecast and announced class suspensions, so they can cook less.
-2. **Quick posting with capacity.** If food is left over, the owner posts each item (name, servings, cutoff time, and a deal: a lower price or a bigger serving) in under 30 seconds, and sets how many orders they can handle (for example, a maximum number of orders or dorm handoffs before cutoff).
+1. **Low-demand alert.** In the morning, owners get a warning when a low-demand day is likely, based on a real rain forecast and announced class suspensions, so they can prepare less.
+2. **Quick posting with capacity.** When food is left over or prepared ingredients need to move, the owner posts each item (name, servings, cutoff time, and a deal: a lower price or a bigger serving) in under 30 seconds, and sets how many orders they can handle (for example, a maximum number of orders or dorm handoffs before cutoff).
 3. **Live availability.** Buyers see remaining servings per dish and remaining order slots update in real time (for example, "4 of 12 servings left", "3 more orders accepted"). A dish or carinderia closes automatically when it is sold out or full, so nothing is oversold.
 4. **Share button.** Anyone can share a listing in one tap to Messenger, Viber, or any app as a link with a preview card. The link opens in the browser with no install.
-5. **Home: recommendations and nearby carinderias.** The first screen students see shows recommended leftover deals, ranked by distance, time left before the cutoff, price, and carinderias they bought from before, together with all carinderias with leftovers within a radius they choose (for example 300 m to 1 km) on a map or list.
+5. **Home: recommendations and nearby carinderias.** The first screen students see shows recommended deals, ranked by distance, time left before the cutoff, price, and carinderias they bought from before, together with all vendors with surplus within a radius they choose (for example 300 m to 1 km) on a map or list.
 6. **Push notifications.** Students who allow notifications get an alert every time a carinderia within their radius lists a sale, with no account needed.
 7. **No-install reservation.** Students reserve from the home screen or a shared link without installing an app or creating an account. They choose their dorm when reserving, so orders are grouped by dorm automatically.
 8. **Direct chat with the carinderia.** After reserving, the buyer and the owner can message each other in the app, with one-tap quick replies for the owner ("Ready na po", "Papunta na sa lobby", "Ubos na po"). The chat is tied to the reservation, so no account is needed, and it closes after pickup.
@@ -84,6 +96,7 @@ ReRoot is a mobile web app that helps carinderia owners avoid and recover losses
 ### What makes it new
 
 - **Event-triggered:** alerts come from real weather and suspension data, so owners are warned before the bad day, not after.
+- **Visible even without Google Maps:** vendors in alleys and side streets appear on the nearby map the moment they post.
 - **Nothing to install:** listings open from a shared link in any browser, and buyers reserve and chat without an account.
 - **Instant reach:** push notifications alert nearby students the moment a sale is listed, and recommendations put the best deals first.
 - **Self-pooling orders:** buyers pick their dorm when reserving, so orders are grouped by building and the owner makes one handoff per dorm.
@@ -99,15 +112,15 @@ In-app payments (cash or GCash on handoff), rider network, native mobile app, na
 
 ## 4. Objectives
 
-**General objective:** To help cook-ahead micro eateries around UST recover income from food they have already cooked by selling it quickly to nearby students, with a tool simple enough for owners with basic digital skills.
+**General objective:** To help prepare-ahead micro food vendors around UST reduce food surplus and recover income by reaching nearby customers quickly, with a tool simple enough for owners with basic digital skills.
 
 **Specific objectives:**
 
 1. Alert owners in the morning when a low-demand day is likely, using a real rain forecast and announced class suspensions.
-2. Let owners post leftover dishes in under 30 seconds and set how many orders they can handle.
+2. Let owners post surplus dishes and items in under 30 seconds and set how many orders they can handle.
 3. Show buyers remaining servings and order slots in real time, and close listings automatically when sold out or full.
 4. Let anyone share a listing in one tap to Messenger, Viber, or other apps, with a clear preview card.
-5. Show students recommended deals and nearby carinderias with leftovers within a chosen radius on the first screen, and let them reserve without installing an app or creating an account, with orders grouped by dorm.
+5. Show students recommended deals and nearby vendors with surplus within a chosen radius on the first screen, and let them reserve without installing an app or creating an account, with orders grouped by dorm.
 6. Notify students who opt in every time a carinderia within their radius lists a sale.
 7. Let buyers and owners message each other directly about a reservation, with one-tap quick replies for owners.
 8. Confirm each handoff with a pickup code and show owners servings sold and money recovered.
@@ -131,18 +144,17 @@ In-app payments (cash or GCash on handoff), rider network, native mobile app, na
 
 ---
 
-## 6. Tech stack (planned)
+## 6. Tech stack
 
-> Final choices to be confirmed by the developers.
-
-- **Front end:** mobile-first web app (React or Next.js)
-- **Database and realtime updates:** hosted database with realtime support (for example Supabase or Firebase). Reservations must reduce remaining servings in a single transaction so two buyers cannot take the last serving at the same time.
-- **Maps and distance:** browser geolocation with an open map library (for example Leaflet with OpenStreetMap)
-- **Weather:** a free weather forecast API (for example Open-Meteo)
-- **Sharing:** Web Share API and Open Graph preview cards
-- **Direct chat:** messages stored in the realtime database, tied to each reservation and closed after pickup
-- **Push notifications:** Web Push through a service worker (for example Firebase Cloud Messaging). On iPhones, web push works only after the student adds the site to the home screen (iOS 16.4 or later), so the share link remains the fallback.
-- **Hosting:** free web hosting (for example Vercel)
+- **Framework:** Next.js (App Router, JavaScript) with Tailwind CSS, mobile-first
+- **Database and realtime updates:** Cloud Firestore (asia-southeast1). Reservations reduce remaining servings and order slots in a single transaction, so two buyers cannot take the last serving at the same time.
+- **Login:** Firebase Authentication: email and password for vendors; anonymous sign-in for buyers, so buyers never create an account
+- **Maps and distance:** browser geolocation, Leaflet with OpenStreetMap tiles, and Haversine distance for the radius filter
+- **Weather:** Open-Meteo forecast API (free, no key) for Sampaloc
+- **Sharing:** Web Share API with a copy-link fallback, and Open Graph tags for preview cards in Messenger and Viber
+- **Order chat:** messages stored in Firestore, tied to each reservation and closed after pickup
+- **Push notifications:** Firebase Cloud Messaging (web push) through a service worker, sent from a Next.js API route. On iPhones, web push works only after the buyer adds the site to the home screen (iOS 16.4 or later), so the share link remains the fallback.
+- **Hosting:** Vercel
 
 ---
 
@@ -163,10 +175,10 @@ In-app payments (cash or GCash on handoff), rider network, native mobile app, na
 
 | Member | Role |
 |---|---|
-| Lord Benedict Janda | Team Leader, Concept Lead |
+| Lord Benedict Janda | Team Leader, Concept and Design Lead |
 | John Carlo Mananes | Lead Developer |
 | Lawrence Christian Bonus | Developer |
-| Aleia Cejas | Concept Support, Presenter |
+| Aleia Cejas | Content Lead, Presenter |
 
 ---
 
