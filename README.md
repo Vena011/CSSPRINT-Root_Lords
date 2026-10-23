@@ -7,10 +7,10 @@ Built during **CSSprint 2026: Rooted in Innovation** (UST Computer Science Socie
 **Live app:** [cssprint-root-lords.vercel.app](https://cssprint-root-lords.vercel.app) · **Documentation:** [DOCUMENTATION.md](DOCUMENTATION.md) · **Design:** [Figma](https://www.figma.com/design/ZcBuIaRZjjnQZaCYpBaHLn)
 
 <p>
-  <img src="docs/screenshots/student-home.png" width="200" alt="Student home">
-  <img src="docs/screenshots/listing-detail.png" width="200" alt="Listing detail">
-  <img src="docs/screenshots/pickup-code.png" width="200" alt="Pickup code">
-  <img src="docs/screenshots/vendor-dashboard.png" width="200" alt="Vendor dashboard">
+  <img src="ReRoot/docs/screenshots/student-home.png" width="200" alt="Student home">
+  <img src="ReRoot/docs/screenshots/listing-detail.png" width="200" alt="Listing detail">
+  <img src="ReRoot/docs/screenshots/pickup-code.png" width="200" alt="Pickup code">
+  <img src="ReRoot/docs/screenshots/vendor-dashboard.png" width="200" alt="Vendor dashboard">
 </p>
 
 ---
@@ -84,11 +84,11 @@ Small food vendors near UST cook or prepare food **before** customers arrive. Wh
 `score = 40 × (1 − distance ÷ radius) + 30 × (1 − minutesLeft ÷ 180, min 0) + 20 × (1 − price ÷ highest price shown) + 10 if the student bought from this vendor before`. The top 3 show as "Recommended"; everyone else is sorted by distance.
 
 <p>
-  <img src="docs/screenshots/reserve.png" width="200" alt="Reserve form">
-  <img src="docs/screenshots/orders-by-dorm.png" width="200" alt="Orders by dorm">
-  <img src="docs/screenshots/share-sheet.png" width="200" alt="Share sheet">
-  <img src="docs/screenshots/check-code.png" width="200" alt="Order Codes">
-  <img src="docs/screenshots/inbox-chat.png" width="200" alt="Inbox chat">
+  <img src="ReRoot/docs/screenshots/reserve.png" width="200" alt="Reserve form">
+  <img src="ReRoot/docs/screenshots/orders-by-dorm.png" width="200" alt="Orders by dorm">
+  <img src="ReRoot/docs/screenshots/share-sheet.png" width="200" alt="Share sheet">
+  <img src="ReRoot/docs/screenshots/check-code.png" width="200" alt="Order Codes">
+  <img src="ReRoot/docs/screenshots/inbox-chat.png" width="200" alt="Inbox chat">
 </p>
 
 ## 4. Tech stack
