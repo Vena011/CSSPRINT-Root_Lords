@@ -1,217 +1,184 @@
 # ReRoot
 
-**Rerouting surplus food from small food vendors near UST to the customers nearby, before it spoils.**
+**Tirang ulam, hindi tirang lugi.** ReRoot is a mobile web app that helps prepare-ahead food vendors near UST sell their same-day surplus to nearby students, especially on slow days like class suspensions and heavy rain.
 
-Team **Root Lords** · CSSprint 2026: *Rooted in Innovation* · UST Computer Science Society
+Built during **CSSprint 2026: Rooted in Innovation** (UST Computer Science Society) by **Team Root Lords**.
 
-> Status: Day 1 initial project document (October 22, 2026). Includes our vendor interviews and España Boulevard field observations.
+**Live app:** [cssprint-root-lords.vercel.app](https://cssprint-root-lords.vercel.app) · **Documentation:** [DOCUMENTATION.md](DOCUMENTATION.md) · **Design:** [Figma](https://www.figma.com/design/ZcBuIaRZjjnQZaCYpBaHLn)
+
+<p>
+  <img src="docs/screenshots/student-home.png" width="200" alt="Student home">
+  <img src="docs/screenshots/listing-detail.png" width="200" alt="Listing detail">
+  <img src="docs/screenshots/pickup-code.png" width="200" alt="Pickup code">
+  <img src="docs/screenshots/vendor-dashboard.png" width="200" alt="Vendor dashboard">
+</p>
 
 ---
 
-## 1. Problem
+## 1. The problem
 
-Small food vendors near the University of Santo Tomas, such as cook-ahead carinderias and food stalls that pre-cut fruit or prepare ingredients, prepare perishable food before customers arrive. Whatever is not sold is taken home, given away, or thrown out, and the money spent on ingredients is lost. The loss is worst on **low-demand days**, such as class suspensions and heavy-rain days, when most student customers stay in their dorms or go home. Many are also hard to find: they sit in side streets and alleys, often with no Google Maps listing, and compete with other carinderias, fast-food chains, and convenience stores. Most stalls are small, with little storage or refrigeration, so prepared food cannot wait for a better day. These owners have no affordable way to reach the customers who are still nearby: delivery apps take too large a commission, and a Facebook post cannot coordinate orders.
+Small food vendors near UST cook or prepare food **before** customers arrive. When demand drops without warning (a class suspension, heavy rain), the food and the money spent on ingredients are lost. Delivery apps don't help: they charge about 20–33% commission, which a ₱45 dish cannot absorb.
 
-**In one sentence:** prepare-ahead micro food vendors near UST lose money on food surplus (cooked dishes and prepared perishables) because demand drops without warning and they have no affordable, fast way to reach the customers still nearby.
+**Problem statement:** Prepare-ahead micro food vendors near UST lose money on food surplus because demand drops without warning, and they have no affordable, fast way to reach the customers still nearby.
 
 ### Evidence
 
-- **Demand drops are frequent.** From August 1 to September 15, 2026, 12 of 28 class days were cancelled in Metro Manila and several provinces, about 43% of class days in that period [4]. Disasters disrupted 69 school days nationwide from January to early October 2025 [5]. DepEd is preparing modified and suspended class days for SY 2026-27 because of a potentially strong El Niño [6].
-- **Every unsold serving costs more.** In April 2026, carinderia owners raised dish prices by ₱10-15 as LPG, rice, meat, and cooking oil became more expensive [10].
-- **Food waste is large.** The Philippines wastes about 2,175 tons of food every day [11].
-- **Existing channels do not fit.** Delivery apps charge restaurants about 20-33% commission, which a ₱50 dish cannot absorb [13].
-- **Owners need simple tools.** 51% of surveyed MSMEs use only basic digital tools and 23% use none for business [2].
-- **Small food vendors say rain hurts sales.** In 16 focus group discussions with 88 small food vendors in Quezon City and Pasay, vendors reported that rainy seasons reduce sales, regular customers are declining, and they want help attracting customers and managing finances [17].
-- **Suspensions reach millions.** In August 2026 alone, monsoon-related suspensions affected nearly 7 million learners in more than 10,000 public schools [21].
-- **Students near UST get stranded in dorms.** During Typhoon Carina in July 2024, students were stranded in dorms on Dapitan, España, Lacson, and P. Noval; most food establishments near campus closed, delivery apps were limited, and emergency food packs ran out by about 11 PM [18][19]. FEU dormers in the same University Belt feared a food shortage [20]. On days when stalls can still open, nearby students need food; on severe flood days, the same alert helps owners decide not to prepare at all.
-- **Food waste is now a policy priority.** House Bill 8043, which aims to cut food waste by 50% by 2030 and offers tax deductions to establishments that reduce edible surplus, passed third reading in March 2026 with 247 votes; Senate Bill 1378 was filed in September 2025 [22]. A separate Food Waste Reduction Act (HB 2196) was filed in December 2025 [23].
+- **Slow days are common.** From August 1 to September 15, 2026, 12 of 28 class days were cancelled in Metro Manila and nearby provinces, about 43% [1]. Disasters disrupted 69 school days nationwide in 2025 [2], and DepEd is preparing modified class days for SY 2026–27 because of a possible strong El Niño [3].
+- **Every unsold serving costs more.** In April 2026, carinderia owners raised dish prices by ₱10–15 as LPG, rice, meat and cooking oil became more expensive [4].
+- **Food waste is large.** The Philippines wastes about 2,175 tons of food every day [5].
+- **Existing channels don't fit.** Delivery apps charge about 20–33% commission [6]. Surplus-food apps work abroad (Too Good To Go has 120 million users in 21 countries), but we found no Philippine launch [7].
+- **The area is dense.** UST is one of about 56 schools in Manila's University Belt [8].
 
-### Field evidence (interviews near UST, October 22, 2026)
+### Field results (our interviews, Oct 22, 2026)
 
-We interviewed two long-running food vendors near UST with signed consent forms. One cooks only to order; the other buys fruit in bulk and pre-cuts it. This is a small sample of first-hand signals that we pair with the published research and our field observations, not statistics. Interviewing larger cook-ahead carinderias is part of our pilot plan.
+| | Fruit shake vendor | Carinderia |
+| --- | --- | --- |
+| Prepares food ahead? | Yes: pre-cuts fruit, buys about 3 days of stock | No: cooks only when there is an order |
+| Loss on slow days | "Minsan 50 to 70%"; doesn't open on heavy-rain days | Sales drop, but little surplus |
+| Biggest problem | Competition | Competition |
+| Would use the app? | Yes | Yes, "kung makakatulong" |
 
-| Measure | Interviewee 1: carinderia (36 years) | Interviewee 2: fruit shake stall (since 2013) |
-|---|---|---|
-| Prepares food ahead? | No, cooks only when ordered | Yes: buys fruit in bulk (good for about three days) and pre-cuts it |
-| Effect of no classes or rain | Sales "definitely" go down | "Malaki"; on heavy-rain days she does not open at all because fruit is expensive |
-| Surplus or spoilage | None reported | Spoilage "minsan hindi maiiwasan"; slow-day losses "minsan 50 to 70%" (her estimate) |
-| Finding customers on slow days | Long-time regulars, Lalamove, own rider | "Wala, nandito lang ako. Hindi ako basta makakahanap eh." Some regulars text orders |
-| Biggest problem | Competition | "Sobrang tumal sa dami ng competition" |
-| Handles surplus by | Not applicable | Does not discount; gives bigger portions so fruit is not wasted |
-| Would use the app? | Yes, "kung makakatulong" | Yes; wants both alerts and visibility; likes showing "kung ano 'yung available" |
-
-### Field observations: España Boulevard (October 22, 2026)
-
-We walked the food stalls along España Boulevard and its side streets near UST and spoke with vendors.
-
-- **Crowded, similar offerings.** Stalls line España from end to end. Vendors said competition from other carinderias, fast-food chains, and convenience stores cuts their sales. Many sell similar food and compete mainly on price.
-- **Mixed customers.** Buyers include students, residents, and people working in the area.
-- **Hard to find.** Many carinderias are deep in side streets or alleys and have no Google Maps listing or online presence.
-- **Small spaces, little storage.** Most stalls are small, so storage and refrigeration are limited, and prepared ingredients and dishes spoil faster.
-- **Waste also comes from preparation.** Peels, spoiled ingredients, and ingredients that sit unused too long add to waste.
-- **Fresh-fruit stalls are most exposed.** Shake stands and other fruit-based sellers lose ingredients fastest when there is surplus, which matches our shake vendor interview.
-
-**What we learned**
-
-- **Surplus comes from preparing ahead.** The vendor who pre-cuts perishables reported spoilage and large slow-day losses; the cook-to-order carinderia did not. This confirms our target: prepare-ahead vendors.
-- **Slow days hurt both,** matching the suspension data above.
-- **Being found is the real gap.** Both interviewees named competition as their biggest problem, and our field observations show many stalls have no online presence at all. Both said they would use an app that shows nearby customers what is available.
-- **Surplus cannot wait.** With little storage, prepared food has to be sold the same day, so speed of reaching buyers matters more than storage tricks.
-- **Discounts are not the only deal.** The shake vendor gives bigger portions instead of lowering prices, so ReRoot lets vendors offer either a lower price or a bigger serving.
-
-
----
+**What we learned:** surplus comes from preparing ahead, so we target prepare-ahead vendors. The shake vendor gives bigger portions instead of discounts, so ReRoot lets vendors offer **a lower price or a bigger serving**. Two interviews is a small sample; we treat them as first-hand signals backed by the published data above.
 
 ## 2. Target users
 
-| Level | Target |
-|---|---|
-| **MSME size** | Micro enterprises: up to ₱3M assets and 9 or fewer workers [1][15][16] |
-| **Sector** | Accommodation and Food Service Activities: 190,899 MSMEs, 15.37% of all MSMEs [1] |
-| **Business model** | Prepare-ahead vendors: cook-ahead carinderias and turo-turo stalls, and food stalls that pre-cut fruit or prepare perishable ingredients. They commit money to food before any customer arrives. Our interviews confirmed that cook-to-order eateries have little surplus. |
-| **Place** | Sampaloc, Manila: España Boulevard and the streets around UST (Dapitan, Asturias, P. Noval, Lacson) |
-| **Primary user** | Owners of prepare-ahead food stalls and carinderias near UST |
-| **Secondary user** | Students living in dorms and boarding houses near UST (MVP focus); nearby residents and workers next |
+| | |
+| --- | --- |
+| **Primary** | Micro food vendors (up to ₱3M assets, 9 or fewer workers) in Sampaloc, Manila, who prepare food ahead: cook-ahead carinderias, turo-turo stalls, and stalls that pre-cut fruit or prepare perishables |
+| **Secondary** | Students living in dorms and boarding houses near UST (Dapitan, Asturias, P. Noval, Lacson) |
+| **Why MSMEs** | Large chains have POS data, planning teams and delivery contracts. A carinderia has a notebook and gut feel, and one bad day can erase several days of profit. |
 
-**Why MSMEs specifically:** large food chains already have POS data, planning teams, delivery contracts, and formal waste programs [12]. A carinderia has a notebook and gut feel. One day of unsold food can erase several days of profit.
+## 3. The solution
 
----
+**Core loop:** the vendor posts a dish → nearby students see it live → a student reserves with no account → they get a pickup code → the vendor confirms the handoff.
 
-## 3. Solution
+**What makes it new**
+1. **Event-triggered:** a low-demand alert built on a real rain forecast and class suspensions warns vendors in the morning, so they can cook less or post early.
+2. **Nothing to install:** listings travel through the dorm group chats students already use, as a link with a preview card.
+3. **No account needed to buy:** students can reserve as guests; an account only saves their name and dorm.
+4. **Pickup only, grouped by dorm:** each dorm gets its own share link, so the vendor sees who is coming from which building. Students pick up at the carinderia with their code; there are no deliveries.
+5. **No commission:** free for vendors, free for students.
 
-ReRoot is a mobile web app that helps prepare-ahead food vendors near UST get found by nearby customers and sell their surplus before it spoils, especially on low-demand days.
+### Features
 
-### MVP flow
+| Feature | Tier |
+| --- | --- |
+| Vendor posts a dish in seconds: name, servings, lower price (with optional regular price, shown as "₱90 → ₱60 · 33% off") or bigger serving, cutoff, max orders | 1 |
+| Live availability ("4 of 12 left") and auto-close when sold out, full, or past cutoff | 1 |
+| One login for everyone; the user chooses **Student** or **Vendor** when signing up; students can also reserve as guests | 1 |
+| Student reserves and gets a 4-digit pickup code | 1 |
+| Vendor sees orders grouped by dorm and confirms pickups on **Order Codes** (type the code, or confirm from the live "Waiting for pickup" list) | 1 |
+| Student dashboard: top 3 recommendations, then nearby dishes by radius (300 m / 500 m / 1 km), list or map, and search | 2 |
+| Pickup location per dish: store address, map pin and a Directions link | 2 |
+| Dish photos, resized on the phone before upload | 2 |
+| Low-demand alert from the Open-Meteo rain forecast and a class-suspension switch | 2 |
+| One-tap share to dorm group chats with a preview card and dorm-specific links | 2 |
+| Filipino / English toggle | 2 |
+| Inbox: a chat for every order, with quick replies ("On my way", "I'm here", "Ready na po", "Sorry, sold out") and unread badges | 3 |
+| Notifications: sale and new-dish alerts for students, new-order and message alerts for vendors, as a banner, a system notification, or a push when the app is closed | 3 |
+| Results card: servings saved and pesos recovered today | 3 |
+| My orders, cancel a reservation, profile and settings (language, notifications, default radius), forgot password | Account |
+| Splash and loading screens, welcome intro, 404, help, privacy policy, terms; phone, iPad and desktop layouts | UX |
 
-1. **Low-demand alert.** In the morning, owners get a warning when a low-demand day is likely, based on a real rain forecast and announced class suspensions, so they can prepare less.
-2. **Quick posting with capacity.** When food is left over or prepared ingredients need to move, the owner posts each item (name, servings, cutoff time, and a deal: a lower price or a bigger serving) in under 30 seconds, and sets how many orders they can handle (for example, a maximum number of orders or dorm handoffs before cutoff).
-3. **Live availability.** Buyers see remaining servings per dish and remaining order slots update in real time (for example, "4 of 12 servings left", "3 more orders accepted"). A dish or carinderia closes automatically when it is sold out or full, so nothing is oversold.
-4. **Share button.** Anyone can share a listing in one tap to Messenger, Viber, or any app as a link with a preview card. The link opens in the browser with no install.
-5. **Home: recommendations and nearby carinderias.** The first screen students see shows recommended deals, ranked by distance, time left before the cutoff, price, and carinderias they bought from before, together with all vendors with surplus within a radius they choose (for example 300 m to 1 km) on a map or list.
-6. **Push notifications.** Students who allow notifications get an alert every time a carinderia within their radius lists a sale, with no account needed.
-7. **No-install reservation.** Students reserve from the home screen or a shared link without installing an app or creating an account. They choose their dorm when reserving, so orders are grouped by dorm automatically.
-8. **Direct chat with the carinderia.** After reserving, the buyer and the owner can message each other in the app, with one-tap quick replies for the owner ("Ready na po", "Papunta na sa lobby", "Ubos na po"). The chat is tied to the reservation, so no account is needed, and it closes after pickup.
-9. **Verified handoff.** A pickup code confirms each handoff, and the owner sees servings sold and money recovered.
+**Recommendation ranking** (simple and explainable):
+`score = 40 × (1 − distance ÷ radius) + 30 × (1 − minutesLeft ÷ 180, min 0) + 20 × (1 − price ÷ highest price shown) + 10 if the student bought from this vendor before`. The top 3 show as "Recommended"; everyone else is sorted by distance.
 
-### What makes it new
+<p>
+  <img src="docs/screenshots/reserve.png" width="200" alt="Reserve form">
+  <img src="docs/screenshots/orders-by-dorm.png" width="200" alt="Orders by dorm">
+  <img src="docs/screenshots/share-sheet.png" width="200" alt="Share sheet">
+  <img src="docs/screenshots/check-code.png" width="200" alt="Order Codes">
+  <img src="docs/screenshots/inbox-chat.png" width="200" alt="Inbox chat">
+</p>
 
-- **Event-triggered:** alerts come from real weather and suspension data, so owners are warned before the bad day, not after.
-- **Visible even without Google Maps:** vendors in alleys and side streets appear on the nearby map the moment they post.
-- **Nothing to install:** listings open from a shared link in any browser, and buyers reserve and chat without an account.
-- **Instant reach:** push notifications alert nearby students the moment a sale is listed, and recommendations put the best deals first.
-- **Self-pooling orders:** buyers pick their dorm when reserving, so orders are grouped by building and the owner makes one handoff per dorm.
-- **Low-effort chat for owners:** one-tap quick replies let busy owners coordinate pickups without typing.
-- **No commission:** free for vendors, no riders needed.
-- **Localized, not copied:** surplus-food apps work abroad (Too Good To Go has 120 million users in 21 countries), but its first Asian market opened only in January 2026 and we found no Philippine launch [14]. None react to class suspensions or group orders by dorm.
+## 4. Tech stack
 
-### Out of scope for the MVP
+| Part | Choice |
+| --- | --- |
+| Framework | Next.js (App Router, JavaScript) + Tailwind CSS |
+| Database + realtime | Cloud Firestore (asia-southeast1) |
+| Login | Firebase Auth email/password for everyone, role (student or vendor) chosen after sign-up; anonymous sign-in for guest students |
+| Push | Firebase Cloud Messaging (web push) + a Next.js API route using firebase-admin |
+| Map | Leaflet with OpenStreetMap tiles (student map, dish pickup map, vendor pickup-pin picker) |
+| Weather | Open-Meteo forecast API (Sampaloc, 14.61, 120.99) |
+| Sharing | Web Share API, copy-link fallback, Open Graph preview cards |
+| Hosting | Vercel |
 
-In-app payments (cash or GCash on handoff), rider network, native mobile app, nationwide rollout.
+**Security:** reservations go through a Firestore transaction, so two students can never get the last serving. Security rules let only the owning vendor edit a listing, let students read only their own reservations, and let only the student and vendor of an order read its chat. No secrets are committed to this repo.
 
----
+### Run it locally
 
-## 4. Objectives
+```bash
+git clone https://github.com/Vena011/CSSPRINT-Root_Lords.git
+cd CSSPRINT-Root_Lords
+npm install
+cp .env.example .env.local   # fill in the Firebase values, or leave empty to run on demo data
+npm run dev                  # http://localhost:3000
+```
 
-**General objective:** To help prepare-ahead micro food vendors around UST reduce food surplus and recover income by reaching nearby customers quickly, with a tool simple enough for owners with basic digital skills.
+Setup, Firebase, deployment and the data model are in [DOCUMENTATION.md](DOCUMENTATION.md).
 
-**Specific objectives:**
+Environment variables (names only): `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`, `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`, `NEXT_PUBLIC_FIREBASE_APP_ID`, `NEXT_PUBLIC_FIREBASE_VAPID_KEY`, `FIREBASE_SERVICE_ACCOUNT` (server only).
 
-1. Alert owners in the morning when a low-demand day is likely, using a real rain forecast and announced class suspensions.
-2. Let owners post surplus dishes and items in under 30 seconds and set how many orders they can handle.
-3. Show buyers remaining servings and order slots in real time, and close listings automatically when sold out or full.
-4. Let anyone share a listing in one tap to Messenger, Viber, or other apps, with a clear preview card.
-5. Show students recommended deals and nearby vendors with surplus within a chosen radius on the first screen, and let them reserve without installing an app or creating an account, with orders grouped by dorm.
-6. Notify students who opt in every time a carinderia within their radius lists a sale.
-7. Let buyers and owners message each other directly about a reservation, with one-tap quick replies for owners.
-8. Confirm each handoff with a pickup code and show owners servings sold and money recovered.
-9. Keep the tool usable for owners with basic digital skills: works in a phone browser, minimal typing, Filipino and English.
+**Demo logins** (password `demo1234`): vendor `nena@reroot.test`, student `student@reroot.test`. New users sign up at `/login` and choose Student or Vendor.
 
----
+### Folder structure
 
-## 5. Success criteria
+```
+app/            pages (student: /, /l/[id], /r/[id], /me; vendor: /vendor/...; both: /inbox, /account, /login)
+app/api/        push notifications (/api/notify)
+components/     UI components (ListingCard, ChatThread, LeafletMap, MessageAlerts, ...)
+lib/            data layer (data.js → db.js Firebase | mock.js demo), copy (EN/FIL), ranking, geo, photo
+scripts/        seed script for the demo data
+data/           demo seed data
+public/         icons, logo, preview image, manifest
+docs/           screenshots
+```
 
-| Criterion | Target |
-|---|---|
-| Alert (demo) | Alert appears when the forecast shows heavy rain or a suspension is entered |
-| Posting speed (demo) | Owner posts a dish in under 30 seconds |
-| Live availability (demo) | When one student reserves, the remaining servings drop on the other student's screen within seconds; a full listing closes automatically |
-| Share link (demo) | Shared link shows a preview card in Messenger and opens on a student phone with no install |
-| Direct chat (demo) | Buyer sends a message; owner replies with a one-tap quick reply; both see it within seconds |
-| Home screen (demo) | Recommendations and nearby carinderias appear first; changing the radius updates the list |
-| Push notification (demo) | A student phone receives a notification within seconds of a vendor posting |
-| Pooled order (demo) | Two students from one dorm reserve; orders group under that dorm; pickup code verified |
-| Pilot (after hackathon, goal) | 5-10 carinderias using it weekly |
+## 5. Roadmap
 
----
+| Version | Adds |
+| --- | --- |
+| v2 | Automatic class-suspension feed (no manual switch), GCash payments, no-show tracking |
+| v3 | Suki points for repeat buyers; prices that drop toward closing time |
+| v4 | "Cook less" guide from each vendor's own sales and leftover history |
+| v5 | Other University Belt campuses, then other school and office districts; native app |
 
-## 6. Tech stack
-
-- **Framework:** Next.js (App Router, JavaScript) with Tailwind CSS, mobile-first
-- **Database and realtime updates:** Cloud Firestore (asia-southeast1). Reservations reduce remaining servings and order slots in a single transaction, so two buyers cannot take the last serving at the same time.
-- **Login:** Firebase Authentication: email and password for vendors; anonymous sign-in for buyers, so buyers never create an account
-- **Maps and distance:** browser geolocation, Leaflet with OpenStreetMap tiles, and Haversine distance for the radius filter
-- **Weather:** Open-Meteo forecast API (free, no key) for Sampaloc
-- **Sharing:** Web Share API with a copy-link fallback, and Open Graph tags for preview cards in Messenger and Viber
-- **Order chat:** messages stored in Firestore, tied to each reservation and closed after pickup
-- **Push notifications:** Firebase Cloud Messaging (web push) through a service worker, sent from a Next.js API route. On iPhones, web push works only after the buyer adds the site to the home screen (iOS 16.4 or later), so the share link remains the fallback.
-- **Hosting:** Vercel
-
----
-
-## 7. Scalability roadmap
-
-| Stage | What gets added |
-|---|---|
-| **MVP (hackathon)** | Low-demand alert, quick posting with capacity, live availability, share button, recommendations and nearby-by-radius home screen, push notifications, no-install reservations grouped by dorm, direct buyer-owner chat, pickup code, results card |
-| **v2** | Prices that drop toward closing, photo posting (AI reads the display trays), suki points that turn rescue buyers into regulars |
-| **v2.5** | Cooking guide based on each owner's leftover history |
-| **v3** | Automatic suspension feeds from official announcements and school calendars; rain-day pre-orders from dorms |
-| **v4** | The rest of the University Belt (about 56 schools [9]), other school districts, bakeries, school canteens |
-| **v5 (startup model)** | Paid plan for small chains and canteens keeps it free for carinderias; district-level demand data grows more useful as more vendors join |
-
----
-
-## 8. Team
+## 6. Team Root Lords
 
 | Member | Role |
-|---|---|
-| Lord Benedict Janda | Team Leader, Concept and Design Lead |
-| John Carlo Mananes | Lead Developer |
-| Lawrence Christian Bonus | Developer |
-| Aleia Cejas | Content Lead, Presenter |
+| --- | --- |
+| Lord Benedict Janda | Team leader, design (Figma, style guide, logo, deck), submissions |
+| John Carlo "JC" Mananes | Lead developer: Firebase, data layer, security rules, API, deployment, push |
+| Lawrence Christian Bonus | Developer: screens and components, map, sharing, styling |
+| Aleia Cejas | Contents: problem research, interviews, survey, UI copy, demo data, pitch content |
 
----
+## 7. Credits
 
-## 9. Acknowledgments
+Built during **CSSprint 2026: Rooted in Innovation**, UST Computer Science Society, by Team Root Lords. No code, designs or text from earlier projects were used.
 
-- This project was developed during **CSSprint 2026: Rooted in Innovation**, organized by the UST Computer Science Society.
-- **AI assistance:** Claude (Anthropic) was used for research summaries and drafting documentation. All content was reviewed by the team.
-- Third-party libraries, APIs, and datasets will be listed here as they are added, with their licenses.
+| What | Used for | License |
+| --- | --- | --- |
+| [Next.js](https://nextjs.org) | App framework (App Router) | MIT |
+| [React](https://react.dev) | UI library | MIT |
+| [Tailwind CSS](https://tailwindcss.com) | Styling | MIT |
+| [Firebase](https://firebase.google.com) (Firestore, Auth, Cloud Messaging) | Database, login, push notifications | Apache-2.0 (SDK) |
+| [Leaflet](https://leafletjs.com) | Map | BSD-2-Clause |
+| [OpenStreetMap](https://www.openstreetmap.org/copyright) | Map tiles and data | ODbL, © OpenStreetMap contributors |
+| [Open-Meteo](https://open-meteo.com) | Rain forecast for the low-demand alert | CC BY 4.0 |
+| [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) via [@fontsource](https://fontsource.org) | Typeface | SIL Open Font License 1.1 |
+| [Lucide](https://lucide.dev) | Icon shapes (SVG paths adapted in components/ui.js) | ISC |
+| Logo, app icons, preview image | Designed by the team in Figma during the event | Original |
+| [Figma](https://figma.com) | Wireframes, style guide, screens | Tool |
+| [Claude](https://claude.ai) (Anthropic) | AI assistant for design drafts, code drafts, copy drafts and debugging. All AI-assisted code was reviewed, understood and committed by team members. | Tool |
 
----
+## Sources
 
-## 10. References
-
-1. Department of Trade and Industry. (2023). *2023 Philippine MSME statistics*. https://dti.gov.ph/businesses/msmes/msmeresources/msme-statistics
-2. Department of Trade and Industry. *MADALI e-commerce baseline survey*. https://ecommerce.dti.gov.ph/madali/baseline_survey.html
-3. Malaya Business Insight. (2025). *MSMEs turn more optimistic but fear access to credit* (BCG survey). https://malaya.com.ph/business/business-news/msmes-turn-more-optimistic-but-fear-access-to-credit
-4. Philippine Canadian Inquirer. (2026). *Blanket class suspensions: The growing cost to Filipino students' learning*. https://canadianinquirer.net/2026/09/16/blanket-class-suspensions-the-growing-cost-to-filipino-students-learning/
-5. Magtulis, P. (2026, January 3). *Suspended, cancelled and lost*. The Data Dictionary. https://www.data-dict.com/class-suspensions/
-6. Daily Tribune. (2026). *Shorter class days loom due El Niño*. https://tribune.net.ph/2026/10/19/shorter-class-days-loom-due-el-ni%C3%B1o
-7. BusinessWorld. (2026). *Blanket suspensions seen hurting workers, businesses in Philippines*. https://bworldonline.com/top-stories/2026/09/15/777149/blanket-suspensions-seen-hurting-workers-businesses-in-philippines/
-8. BusinessMirror. (2026). *Marcos, economic team push to end blanket class and work suspensions*. https://businessmirror.com.ph/2026/09/16/marcos-economic-team-push-to-end-blanket-class-and-work-suspensions/
-9. Wikipedia. *University Belt*. https://en.wikipedia.org/wiki/University_Belt
-10. MindaNews. (2026). *Carenderia owners, food stall vendors raise prices but customers understand*. https://mindanews.com/top-stories/2026/04/carenderia-owners-food-stall-vendors-raise-prices-but-customers-understand/
-11. Manila Bulletin. (2025). *Help reduce food wastage* (DOST-FNRI data). https://mb.com.ph/2025/12/04/help-reduce-food-wastage
-12. Aquino, T. (2025). *Nearly 3 out of 10 Filipinos are hungry, but so much food is wasted*. GMA News. https://www.gmanetwork.com/news/lifestyle/food/947584/nearly-3-out-of-10-filipinos-are-hungry-but-so-much-food-is-wasted-what-can-we-do-about-it/story/
-13. Klikit. (2026). *Food delivery commission fees in the Philippines*. https://klikit.io/en/learn/food-delivery-commission-fees-philippines-guide
-14. PR Newswire. (2026). *World's largest marketplace for surplus food, Too Good To Go, launches in Japan*. https://www.prnewswire.com/news-releases/worlds-largest-marketplace-for-surplus-food-too-good-to-go-launches-in-japan-302672081.html
-15. GMA News. (2008). *Arroyo signs MSME law, redefines micro, small traders* (RA 9501). https://gmanetwork.com/news/money/content/97000/arroyo-signs-msme-law-redefines-micro-small-traders/story
-16. Wikipedia. *Micro business in the Philippines*. https://en.wikipedia.org/wiki/Micro_business_in_the_Philippines
-17. CGIAR Initiative on Resilient Cities. (2023). *Navigating the daily challenges faced by small food vendors in Metro Manila, Philippines*. https://www.cgiar.org/news-events/news/navigating-the-daily-challenges-faced-by-small-food-vendors-in-metro-manila-philippines
-18. The Varsitarian. (2024). *Food packs reach Thomasians stranded in dorms due to Carina*. https://varsitarian.net/food-packs-reach-thomasians-stranded-in-dorms-due-to-carina/
-19. TomasinoWeb. (2024). *Habagat-induced flood around UST subsides; student orgs establish relief ops*. https://tomasinoweb.org/post/1721913207301-8a5aa9f9-habagat-induced-flood-around-ust-subsides-student-orgs-establish-relief-ops
-20. Durano, M. V. A. (2024). *FEU dormers fear 'food shortage' as Carina floods Manila*. FEU Advocate. https://feuadvocate.net/feu-dormers-fear-food-shortage-as-carina-floods-manila/
-21. INQUIRER.net. (2026). *DepEd says school suspensions affect almost 7 million students*. https://newsinfo.inquirer.net/2281735/deped-says-school-suspensions-affect-almost-7-million-students
-22. The Freeman / Philstar. (2026). *Cebu summit seeks to rescue surplus food*. https://www.philstar.com/the-freeman/cebu-news/2026/10/18/2564039/cebu-summit-seeks-rescue-surplus-food
-23. The Manila Times. (2025). *Food waste reduction law is long overdue*. https://www.manilatimes.net/2025/12/06/opinion/editorial/food-waste-reduction-law-is-long-overdue/2238018 
+1. Philippine Canadian Inquirer, ["Blanket class suspensions: the growing cost to Filipino students' learning"](https://canadianinquirer.net/2026/09/16/blanket-class-suspensions-the-growing-cost-to-filipino-students-learning/), Sept 16, 2026 (EDCOM 2 analysis)
+2. The Data Dictionary, ["Suspended, cancelled and lost"](https://www.data-dict.com/class-suspensions/), Jan 3, 2026
+3. Daily Tribune, ["Shorter class days loom due El Niño"](https://tribune.net.ph/2026/10/19/shorter-class-days-loom-due-el-ni%C3%B1o), Oct 19, 2026
+4. MindaNews, ["Carenderia owners, food stall vendors raise prices"](https://mindanews.com/top-stories/2026/04/carenderia-owners-food-stall-vendors-raise-prices-but-customers-understand/), Apr 19, 2026
+5. Manila Bulletin, ["Help reduce food wastage"](https://mb.com.ph/2025/12/04/help-reduce-food-wastage), Dec 4, 2025 (DOST-FNRI data)
+6. Klikit, ["Food delivery commission fees in the Philippines"](https://klikit.io/en/learn/food-delivery-commission-fees-philippines-guide), May 26, 2026
+7. PR Newswire, ["Too Good To Go launches in Japan"](https://www.prnewswire.com/news-releases/worlds-largest-marketplace-for-surplus-food-too-good-to-go-launches-in-japan-302672081.html), Jan 28, 2026
+8. Wikipedia, ["University Belt"](https://en.wikipedia.org/wiki/University_Belt)
