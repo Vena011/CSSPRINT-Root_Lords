@@ -65,15 +65,15 @@ export default function Account() {
   return (
     <>
       <Header title={t("accountTitle")} back={isVendor ? "/vendor" : "/"} />
-      <Page narrow className="gap-4">
+      <Page className="gap-4 md:grid md:grid-cols-2 md:content-start md:items-start">
         {loading ? null : !user ? (
-          <section className="flex flex-col gap-3 rounded-card border border-line bg-surface p-4">
+          <section className="md:row-span-3 flex flex-col gap-3 rounded-card border border-line bg-surface p-4">
             <h2 className="text-base font-bold">{t("guestTitle")}</h2>
             <p className="text-sm text-muted">{t("guestBody")}</p>
             <Button href="/login">{t("logIn")}</Button>
           </section>
         ) : (
-          <form onSubmit={save} className="flex flex-col gap-3.5 rounded-card border border-line bg-surface p-4" noValidate>
+          <form onSubmit={save} className="md:row-span-3 flex flex-col gap-3.5 rounded-card border border-line bg-surface p-4" noValidate>
             <div className="flex items-center gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg font-extrabold text-white">
                 {(user.name || user.email).charAt(0).toUpperCase()}
