@@ -7,10 +7,10 @@ Built during **CSSprint 2026: Rooted in Innovation** (UST Computer Science Socie
 **Live app:** [cssprint-root-lords.vercel.app](https://cssprint-root-lords.vercel.app) · **Documentation:** [DOCUMENTATION.md](DOCUMENTATION.md) · **Design:** [Figma](https://www.figma.com/design/ZcBuIaRZjjnQZaCYpBaHLn)
 
 <p>
-  <img src="ReRoot/docs/screenshots/student-home.png" width="200" alt="Student home">
-  <img src="ReRoot/docs/screenshots/listing-detail.png" width="200" alt="Listing detail">
-  <img src="ReRoot/docs/screenshots/pickup-code.png" width="200" alt="Pickup code">
-  <img src="ReRoot/docs/screenshots/vendor-dashboard.png" width="200" alt="Vendor dashboard">
+  <img src="docs/screenshots/student-home.png" width="200" alt="Student home">
+  <img src="docs/screenshots/listing-detail.png" width="200" alt="Listing detail">
+  <img src="docs/screenshots/pickup-code.png" width="200" alt="Pickup code">
+  <img src="docs/screenshots/vendor-dashboard.png" width="200" alt="Vendor dashboard">
 </p>
 
 ---
@@ -50,12 +50,12 @@ Small food vendors near UST cook or prepare food **before** customers arrive. Wh
 
 ## 3. The solution
 
-**Core loop:** the vendor posts a dish → nearby students see it live → a student reserves with no account → they get a pickup code → the vendor confirms the handoff.
+**Core loop:** the vendor posts a dish → nearby students see it live → a student reserves as a guest or with an account → they get a pickup code → the vendor confirms the handoff.
 
 **What makes it new**
 1. **Event-triggered:** a low-demand alert built on a real rain forecast and class suspensions warns vendors in the morning, so they can cook less or post early.
 2. **Nothing to install:** listings travel through the dorm group chats students already use, as a link with a preview card.
-3. **No account needed to buy:** students can reserve as guests; an account only saves their name and dorm.
+3. **Guest or account, their choice:** students can sign up, or reserve as guests; an account saves their name and dorm.
 4. **Pickup only, grouped by dorm:** each dorm gets its own share link, so the vendor sees who is coming from which building. Students pick up at the carinderia with their code; there are no deliveries.
 5. **No commission:** free for vendors, free for students.
 
@@ -84,11 +84,11 @@ Small food vendors near UST cook or prepare food **before** customers arrive. Wh
 `score = 40 × (1 − distance ÷ radius) + 30 × (1 − minutesLeft ÷ 180, min 0) + 20 × (1 − price ÷ highest price shown) + 10 if the student bought from this vendor before`. The top 3 show as "Recommended"; everyone else is sorted by distance.
 
 <p>
-  <img src="ReRoot/docs/screenshots/reserve.png" width="200" alt="Reserve form">
-  <img src="ReRoot/docs/screenshots/orders-by-dorm.png" width="200" alt="Orders by dorm">
-  <img src="ReRoot/docs/screenshots/share-sheet.png" width="200" alt="Share sheet">
-  <img src="ReRoot/docs/screenshots/check-code.png" width="200" alt="Order Codes">
-  <img src="ReRoot/docs/screenshots/inbox-chat.png" width="200" alt="Inbox chat">
+  <img src="docs/screenshots/reserve.png" width="200" alt="Reserve form">
+  <img src="docs/screenshots/orders-by-dorm.png" width="200" alt="Orders by dorm">
+  <img src="docs/screenshots/share-sheet.png" width="200" alt="Share sheet">
+  <img src="docs/screenshots/check-code.png" width="200" alt="Order Codes">
+  <img src="docs/screenshots/inbox-chat.png" width="200" alt="Inbox chat">
 </p>
 
 ## 4. Tech stack
@@ -112,25 +112,24 @@ Small food vendors near UST cook or prepare food **before** customers arrive. Wh
 git clone https://github.com/Vena011/CSSPRINT-Root_Lords.git
 cd CSSPRINT-Root_Lords
 npm install
-cp .env.example .env.local   # fill in the Firebase values, or leave empty to run on demo data
 npm run dev                  # http://localhost:3000
 ```
 
-Setup, Firebase, deployment and the data model are in [DOCUMENTATION.md](DOCUMENTATION.md).
+Without Firebase settings it runs on built-in demo data. Firebase setup, deployment and the data model are in [DOCUMENTATION.md](DOCUMENTATION.md).
 
 **Demo logins** (password `demo1234`): vendor `nena@reroot.test`, student `student@reroot.test`. New users sign up at `/login` and choose Student or Vendor.
 
 ### Folder structure
 
 ```
-ReRoot/app/            pages (student: /, /l/[id], /r/[id], /me; vendor: /vendor/...; both: /inbox, /account, /login)
-ReRoot/app/api/        push notifications (/api/notify)
-ReRoot/components/     UI components (ListingCard, ChatThread, LeafletMap, MessageAlerts, ...)
-ReRoot/lib/            data layer (data.js → db.js Firebase | mock.js demo), copy (EN/FIL), ranking, geo, photo
-ReRoot/scripts/        seed script for the demo data
-ReRoot/data/           demo seed data
-ReRoot/public/         icons, logo, preview image, manifest
-ReRoot/docs/           screenshots
+app/            pages (student: /, /l/[id], /r/[id], /me; vendor: /vendor/...; both: /inbox, /account, /login)
+app/api/        push notifications (/api/notify)
+components/     UI components (ListingCard, ChatThread, LeafletMap, MessageAlerts, ...)
+lib/            data layer (data.js → db.js Firebase | mock.js demo), copy (EN/FIL), ranking, geo, photo
+scripts/        seed script for the demo data
+data/           demo seed data
+public/         icons, logo, preview image, manifest
+docs/           screenshots
 ```
 
 ## 5. Roadmap
@@ -147,7 +146,7 @@ ReRoot/docs/           screenshots
 | Member | Role |
 | --- | --- |
 | Lord Benedict Janda | Team leader · Figma designer (wireframes, style guide, hi-fi screens, prototype), logo, pitch deck, front-end code, pitch |
-| John Carlo Mananes | Lead developer: Firebase, security rules, push, deployment |
+| John Carlo "JC" Mananes | Lead developer: Firebase, security rules, push, deployment |
 | Lawrence Christian Bonus | Developer: screens, components, testing |
 | Aleia Cejas | Contents: problem research, vendor interviews, UI copy, pitch content |
 
