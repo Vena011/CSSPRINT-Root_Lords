@@ -4,7 +4,7 @@
 
 Built during **CSSprint 2026: Rooted in Innovation** (UST Computer Science Society) by **Team Root Lords**.
 
-**Live app:** [cssprint-root-lords.vercel.app](https://cssprint-root-lords.vercel.app) · **Documentation:** [DOCUMENTATION.md](DOCUMENTATION.md) · **Design:** [Figma](https://www.figma.com/design/ZcBuIaRZjjnQZaCYpBaHLn)
+**Live app:** [cssprint-root-lords.vercel.app](https://cssprint-root-lords.vercel.app) · **Documentation:** [DOCUMENTATION.md](ReRoot/DOCUMENTATION.md) · **Design:** [Figma](https://www.figma.com/design/ZcBuIaRZjjnQZaCYpBaHLn)
 
 <p>
   <img src="ReRoot/docs/screenshots/student-home.png" width="200" alt="Student home">
