@@ -195,23 +195,23 @@ In-app payments (cash or GCash on handoff), rider network, native mobile app, na
 1. Department of Trade and Industry. (2023). *2023 Philippine MSME statistics*. https://dti.gov.ph/businesses/msmes/msmeresources/msme-statistics
 2. Department of Trade and Industry. *MADALI e-commerce baseline survey*. https://ecommerce.dti.gov.ph/madali/baseline_survey.html
 3. Malaya Business Insight. (2025). *MSMEs turn more optimistic but fear access to credit* (BCG survey). https://malaya.com.ph/business/business-news/msmes-turn-more-optimistic-but-fear-access-to-credit
-4. Philippine Canadian Inquirer. (2026, September 16). *Blanket class suspensions: The growing cost to Filipino students' learning*. https://canadianinquirer.net/2026/09/16/blanket-class-suspensions-the-growing-cost-to-filipino-students-learning/
+4. Philippine Canadian Inquirer. (2026). *Blanket class suspensions: The growing cost to Filipino students' learning*. https://canadianinquirer.net/2026/09/16/blanket-class-suspensions-the-growing-cost-to-filipino-students-learning/
 5. Magtulis, P. (2026, January 3). *Suspended, cancelled and lost*. The Data Dictionary. https://www.data-dict.com/class-suspensions/
-6. Daily Tribune. (2026, October 19). *Shorter class days loom due El Niño*. https://tribune.net.ph/2026/10/19/shorter-class-days-loom-due-el-ni%C3%B1o
-7. BusinessWorld. (2026, September 15). *Blanket suspensions seen hurting workers, businesses in Philippines*. https://bworldonline.com/top-stories/2026/09/15/777149/blanket-suspensions-seen-hurting-workers-businesses-in-philippines/
-8. BusinessMirror. (2026, September 16). *Marcos, economic team push to end blanket class and work suspensions*. https://businessmirror.com.ph/2026/09/16/marcos-economic-team-push-to-end-blanket-class-and-work-suspensions/
+6. Daily Tribune. (2026). *Shorter class days loom due El Niño*. https://tribune.net.ph/2026/10/19/shorter-class-days-loom-due-el-ni%C3%B1o
+7. BusinessWorld. (2026). *Blanket suspensions seen hurting workers, businesses in Philippines*. https://bworldonline.com/top-stories/2026/09/15/777149/blanket-suspensions-seen-hurting-workers-businesses-in-philippines/
+8. BusinessMirror. (2026). *Marcos, economic team push to end blanket class and work suspensions*. https://businessmirror.com.ph/2026/09/16/marcos-economic-team-push-to-end-blanket-class-and-work-suspensions/
 9. Wikipedia. *University Belt*. https://en.wikipedia.org/wiki/University_Belt
-10. MindaNews. (2026, April 19). *Carenderia owners, food stall vendors raise prices but customers understand*. https://mindanews.com/top-stories/2026/04/carenderia-owners-food-stall-vendors-raise-prices-but-customers-understand/
-11. Manila Bulletin. (2025, December 4). *Help reduce food wastage* (DOST-FNRI data). https://mb.com.ph/2025/12/04/help-reduce-food-wastage
-12. Aquino, T. (2025, May 28). *Nearly 3 out of 10 Filipinos are hungry, but so much food is wasted*. GMA News. https://www.gmanetwork.com/news/lifestyle/food/947584/nearly-3-out-of-10-filipinos-are-hungry-but-so-much-food-is-wasted-what-can-we-do-about-it/story/
-13. Klikit. (2026, May 26). *Food delivery commission fees in the Philippines*. https://klikit.io/en/learn/food-delivery-commission-fees-philippines-guide
-14. PR Newswire. (2026, January 28). *World's largest marketplace for surplus food, Too Good To Go, launches in Japan*. https://www.prnewswire.com/news-releases/worlds-largest-marketplace-for-surplus-food-too-good-to-go-launches-in-japan-302672081.html
-15. GMA News. (2008, May 23). *Arroyo signs MSME law, redefines micro, small traders* (RA 9501). https://gmanetwork.com/news/money/content/97000/arroyo-signs-msme-law-redefines-micro-small-traders/story
+10. MindaNews. (2026). *Carenderia owners, food stall vendors raise prices but customers understand*. https://mindanews.com/top-stories/2026/04/carenderia-owners-food-stall-vendors-raise-prices-but-customers-understand/
+11. Manila Bulletin. (2025). *Help reduce food wastage* (DOST-FNRI data). https://mb.com.ph/2025/12/04/help-reduce-food-wastage
+12. Aquino, T. (2025). *Nearly 3 out of 10 Filipinos are hungry, but so much food is wasted*. GMA News. https://www.gmanetwork.com/news/lifestyle/food/947584/nearly-3-out-of-10-filipinos-are-hungry-but-so-much-food-is-wasted-what-can-we-do-about-it/story/
+13. Klikit. (2026). *Food delivery commission fees in the Philippines*. https://klikit.io/en/learn/food-delivery-commission-fees-philippines-guide
+14. PR Newswire. (2026). *World's largest marketplace for surplus food, Too Good To Go, launches in Japan*. https://www.prnewswire.com/news-releases/worlds-largest-marketplace-for-surplus-food-too-good-to-go-launches-in-japan-302672081.html
+15. GMA News. (2008). *Arroyo signs MSME law, redefines micro, small traders* (RA 9501). https://gmanetwork.com/news/money/content/97000/arroyo-signs-msme-law-redefines-micro-small-traders/story
 16. Wikipedia. *Micro business in the Philippines*. https://en.wikipedia.org/wiki/Micro_business_in_the_Philippines
-17. CGIAR Initiative on Resilient Cities. (2023, October 16). *Navigating the daily challenges faced by small food vendors in Metro Manila, Philippines*. https://www.cgiar.org/news-events/news/navigating-the-daily-challenges-faced-by-small-food-vendors-in-metro-manila-philippines
-18. The Varsitarian. (2024, July 25). *Food packs reach Thomasians stranded in dorms due to Carina*. https://varsitarian.net/food-packs-reach-thomasians-stranded-in-dorms-due-to-carina/
-19. TomasinoWeb. (2024, July 25). *Habagat-induced flood around UST subsides; student orgs establish relief ops*. https://tomasinoweb.org/post/1721913207301-8a5aa9f9-habagat-induced-flood-around-ust-subsides-student-orgs-establish-relief-ops
-20. Durano, M. V. A. (2024, July 24). *FEU dormers fear 'food shortage' as Carina floods Manila*. FEU Advocate. https://feuadvocate.net/feu-dormers-fear-food-shortage-as-carina-floods-manila/
-21. INQUIRER.net. (2026, August 10). *DepEd says school suspensions affect almost 7 million students*. https://newsinfo.inquirer.net/2281735/deped-says-school-suspensions-affect-almost-7-million-students
-22. The Freeman / Philstar. (2026, October 18). *Cebu summit seeks to rescue surplus food*. https://www.philstar.com/the-freeman/cebu-news/2026/10/18/2564039/cebu-summit-seeks-rescue-surplus-food
-23. The Manila Times. (2025, December 6). *Food waste reduction law is long overdue*. https://www.manilatimes.net/2025/12/06/opinion/editorial/food-waste-reduction-law-is-long-overdue/2238018
+17. CGIAR Initiative on Resilient Cities. (2023). *Navigating the daily challenges faced by small food vendors in Metro Manila, Philippines*. https://www.cgiar.org/news-events/news/navigating-the-daily-challenges-faced-by-small-food-vendors-in-metro-manila-philippines
+18. The Varsitarian. (2024). *Food packs reach Thomasians stranded in dorms due to Carina*. https://varsitarian.net/food-packs-reach-thomasians-stranded-in-dorms-due-to-carina/
+19. TomasinoWeb. (2024). *Habagat-induced flood around UST subsides; student orgs establish relief ops*. https://tomasinoweb.org/post/1721913207301-8a5aa9f9-habagat-induced-flood-around-ust-subsides-student-orgs-establish-relief-ops
+20. Durano, M. V. A. (2024). *FEU dormers fear 'food shortage' as Carina floods Manila*. FEU Advocate. https://feuadvocate.net/feu-dormers-fear-food-shortage-as-carina-floods-manila/
+21. INQUIRER.net. (2026). *DepEd says school suspensions affect almost 7 million students*. https://newsinfo.inquirer.net/2281735/deped-says-school-suspensions-affect-almost-7-million-students
+22. The Freeman / Philstar. (2026). *Cebu summit seeks to rescue surplus food*. https://www.philstar.com/the-freeman/cebu-news/2026/10/18/2564039/cebu-summit-seeks-rescue-surplus-food
+23. The Manila Times. (2025). *Food waste reduction law is long overdue*. https://www.manilatimes.net/2025/12/06/opinion/editorial/food-waste-reduction-law-is-long-overdue/2238018 
