@@ -1,5 +1,7 @@
 "use client";
 
+import { createPortal } from "react-dom";
+
 // Confirmation dialog for destructive actions.
 // const [dialog, confirm] = useConfirm(); if (await confirm({ title, body, confirmLabel })) { ... }  render {dialog}
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -35,7 +37,7 @@ export function useConfirm() {
   }, [opts, close]);
 
   const node = opts ? (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-ink/50 p-4 sm:items-center" onClick={() => close(false)}>
+    <div className="fixed inset-0 z-[70] flex items-end justify-center bg-ink/50 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:items-center" onClick={() => close(false)}>
       <div role="alertdialog" aria-modal="true" aria-labelledby="rr-confirm-title" aria-describedby="rr-confirm-body" className="rr-sheet flex w-full max-w-[400px] flex-col gap-3 rounded-3xl bg-surface p-5" onClick={(e) => e.stopPropagation()}>
         <h2 id="rr-confirm-title" className="text-xl font-bold">{opts.title}</h2>
         {opts.body && <p id="rr-confirm-body" className="text-sm text-muted">{opts.body}</p>}
@@ -48,5 +50,6 @@ export function useConfirm() {
       </div>
     </div>
   ) : null;
-  return [node, confirm];
+  // Rendered into <body>: inside the sticky header it would sit under the bottom nav.
+  return [node && typeof document !== "undefined" ? createPortal(node, document.body) : null, confirm];
 }
