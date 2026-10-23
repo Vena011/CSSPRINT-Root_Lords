@@ -1,0 +1,392 @@
+{
+  "note": "Generated from lib/demo-data.js. cutoffMin and ageMin are minutes relative to seed time. originalPrice = regular price for sale items. studentUid \"u-student\" = the demo student account. Load with scripts/seed.mjs.",
+  "vendors": [
+    {
+      "id": "v1",
+      "name": "Aling Nena's Carinderia",
+      "email": "nena@reroot.test",
+      "address": "Dapitan St.",
+      "lat": 14.6119,
+      "lng": 120.9897
+    },
+    {
+      "id": "v2",
+      "name": "Kuya Ben Shakes",
+      "email": "ben@reroot.test",
+      "address": "Asturias St.",
+      "lat": 14.6087,
+      "lng": 120.9912
+    },
+    {
+      "id": "v3",
+      "name": "Lutong Bahay ni Tess",
+      "email": "tess@reroot.test",
+      "address": "P. Noval St.",
+      "lat": 14.6071,
+      "lng": 120.9871
+    },
+    {
+      "id": "v4",
+      "name": "Kusina sa Lacson",
+      "email": "lacson@reroot.test",
+      "address": "Lacson Ave.",
+      "lat": 14.6112,
+      "lng": 120.9933
+    },
+    {
+      "id": "v5",
+      "name": "Mang Ramon's Turo-Turo",
+      "email": "ramon@reroot.test",
+      "address": "Dapitan cor. M. dela Fuente",
+      "lat": 14.6127,
+      "lng": 120.9918
+    },
+    {
+      "id": "v6",
+      "name": "Ate Liza's Lutong Bahay",
+      "email": "liza@reroot.test",
+      "address": "Espanya Blvd. (near Gate 1)",
+      "lat": 14.6106,
+      "lng": 120.9889
+    },
+    {
+      "id": "v7",
+      "name": "Carinderia ni Aling Rosa",
+      "email": "rosa@reroot.test",
+      "address": "Padre Noval St.",
+      "lat": 14.608,
+      "lng": 120.988
+    },
+    {
+      "id": "v8",
+      "name": "Tito Boy's Silog",
+      "email": "boy@reroot.test",
+      "address": "M. dela Fuente St.",
+      "lat": 14.6113,
+      "lng": 120.9862
+    },
+    {
+      "id": "v9",
+      "name": "Lola Pacing's Kakanin",
+      "email": "pacing@reroot.test",
+      "address": "Lacson Ave. cor. Laong Laan",
+      "lat": 14.604,
+      "lng": 120.993
+    }
+  ],
+  "listings": [
+    {
+      "id": "adobo",
+      "vendorId": "v1",
+      "dish": "Chicken Adobo",
+      "dealType": "bigger_serving",
+      "dealNote": "Extra sabaw and rice, same price",
+      "price": 45,
+      "servingsTotal": 12,
+      "servingsLeft": 4,
+      "maxOrders": 8,
+      "ordersLeft": 4,
+      "cutoffMin": 120,
+      "originalPrice": null
+    },
+    {
+      "id": "tortang",
+      "vendorId": "v1",
+      "dish": "Tortang Talong",
+      "dealType": "lower_price",
+      "dealNote": "₱10 off",
+      "price": 35,
+      "servingsTotal": 6,
+      "servingsLeft": 6,
+      "maxOrders": 6,
+      "ordersLeft": 6,
+      "cutoffMin": 180,
+      "originalPrice": 45
+    },
+    {
+      "id": "shake",
+      "vendorId": "v2",
+      "dish": "Mango Shake",
+      "dealType": "lower_price",
+      "dealNote": "₱10 off, ₱45 → ₱35",
+      "price": 35,
+      "servingsTotal": 10,
+      "servingsLeft": 3,
+      "maxOrders": 10,
+      "ordersLeft": 3,
+      "cutoffMin": 25,
+      "originalPrice": 45
+    },
+    {
+      "id": "buko",
+      "vendorId": "v2",
+      "dish": "Buko Pandan Shake",
+      "dealType": "bigger_serving",
+      "dealNote": "Large cup, same price",
+      "price": 40,
+      "servingsTotal": 8,
+      "servingsLeft": 8,
+      "maxOrders": 8,
+      "ordersLeft": 8,
+      "cutoffMin": 150,
+      "originalPrice": null
+    },
+    {
+      "id": "sinigang",
+      "vendorId": "v3",
+      "dish": "Pork Sinigang",
+      "dealType": "lower_price",
+      "dealNote": "₱15 off before 8 PM",
+      "price": 60,
+      "servingsTotal": 8,
+      "servingsLeft": 7,
+      "maxOrders": 6,
+      "ordersLeft": 5,
+      "cutoffMin": 150,
+      "originalPrice": 75
+    },
+    {
+      "id": "ginataan",
+      "vendorId": "v3",
+      "dish": "Ginataang Kalabasa",
+      "dealType": "lower_price",
+      "dealNote": "₱10 off",
+      "price": 40,
+      "servingsTotal": 6,
+      "servingsLeft": 5,
+      "maxOrders": 6,
+      "ordersLeft": 5,
+      "cutoffMin": 165,
+      "originalPrice": 50
+    },
+    {
+      "id": "menudo",
+      "vendorId": "v4",
+      "dish": "Pork Menudo",
+      "dealType": "bigger_serving",
+      "dealNote": "Bigger serving + free rice",
+      "price": 55,
+      "servingsTotal": 10,
+      "servingsLeft": 5,
+      "maxOrders": 8,
+      "ordersLeft": 6,
+      "cutoffMin": 20,
+      "originalPrice": null
+    },
+    {
+      "id": "bicol",
+      "vendorId": "v4",
+      "dish": "Bicol Express",
+      "dealType": "lower_price",
+      "dealNote": "₱10 off",
+      "price": 55,
+      "servingsTotal": 8,
+      "servingsLeft": 6,
+      "maxOrders": 8,
+      "ordersLeft": 6,
+      "cutoffMin": 140,
+      "originalPrice": 65
+    },
+    {
+      "id": "curry",
+      "vendorId": "v5",
+      "dish": "Chicken Curry",
+      "dealType": "bigger_serving",
+      "dealNote": "Extra potato and rice",
+      "price": 50,
+      "servingsTotal": 10,
+      "servingsLeft": 9,
+      "maxOrders": 8,
+      "ordersLeft": 8,
+      "cutoffMin": 160,
+      "originalPrice": null
+    },
+    {
+      "id": "pancit",
+      "vendorId": "v5",
+      "dish": "Pancit Canton",
+      "dealType": "lower_price",
+      "dealNote": "₱10 off, good for 2",
+      "price": 40,
+      "servingsTotal": 6,
+      "servingsLeft": 4,
+      "maxOrders": 6,
+      "ordersLeft": 4,
+      "cutoffMin": 130,
+      "originalPrice": 50
+    },
+    {
+      "id": "lumpia",
+      "vendorId": "v5",
+      "dish": "Lumpiang Gulay (3 pcs)",
+      "dealType": "lower_price",
+      "dealNote": "₱5 off",
+      "price": 35,
+      "servingsTotal": 12,
+      "servingsLeft": 10,
+      "maxOrders": 12,
+      "ordersLeft": 10,
+      "cutoffMin": 175,
+      "originalPrice": 40
+    },
+    {
+      "id": "pinakbet",
+      "vendorId": "v6",
+      "dish": "Pinakbet",
+      "dealType": "bigger_serving",
+      "dealNote": "Extra rice, same price",
+      "price": 45,
+      "servingsTotal": 8,
+      "servingsLeft": 6,
+      "maxOrders": 6,
+      "ordersLeft": 5,
+      "cutoffMin": 140,
+      "originalPrice": null
+    },
+    {
+      "id": "liempo",
+      "vendorId": "v6",
+      "dish": "Inihaw na Liempo",
+      "dealType": "lower_price",
+      "dealNote": "₱20 off tonight",
+      "price": 65,
+      "servingsTotal": 6,
+      "servingsLeft": 4,
+      "maxOrders": 6,
+      "ordersLeft": 4,
+      "cutoffMin": 110,
+      "originalPrice": 85
+    },
+    {
+      "id": "kare",
+      "vendorId": "v7",
+      "dish": "Kare-Kare",
+      "dealType": "bigger_serving",
+      "dealNote": "Extra bagoong and rice",
+      "price": 70,
+      "servingsTotal": 6,
+      "servingsLeft": 5,
+      "maxOrders": 5,
+      "ordersLeft": 4,
+      "cutoffMin": 150,
+      "originalPrice": null
+    },
+    {
+      "id": "tinola",
+      "vendorId": "v7",
+      "dish": "Chicken Tinola",
+      "dealType": "lower_price",
+      "dealNote": "₱10 off",
+      "price": 50,
+      "servingsTotal": 8,
+      "servingsLeft": 8,
+      "maxOrders": 8,
+      "ordersLeft": 8,
+      "cutoffMin": 170,
+      "originalPrice": null
+    },
+    {
+      "id": "tapsilog",
+      "vendorId": "v8",
+      "dish": "Tapsilog",
+      "dealType": "lower_price",
+      "dealNote": "₱15 off",
+      "price": 55,
+      "servingsTotal": 10,
+      "servingsLeft": 7,
+      "maxOrders": 10,
+      "ordersLeft": 7,
+      "cutoffMin": 160,
+      "originalPrice": 70
+    },
+    {
+      "id": "puto",
+      "vendorId": "v9",
+      "dish": "Puto at Kutsinta (6 pcs)",
+      "dealType": "lower_price",
+      "dealNote": "₱5 off",
+      "price": 25,
+      "servingsTotal": 15,
+      "servingsLeft": 12,
+      "maxOrders": 10,
+      "ordersLeft": 8,
+      "cutoffMin": 180,
+      "originalPrice": 30
+    }
+  ],
+  "reservations": [
+    {
+      "id": "r-seed1",
+      "listingId": "adobo",
+      "vendorId": "v1",
+      "studentUid": "u-student",
+      "name": "Juan D.",
+      "dorm": "dapitan",
+      "qty": 2,
+      "pickupCode": "4821",
+      "status": "reserved",
+      "statusMsg": "",
+      "ageMin": 25
+    },
+    {
+      "id": "r-seed2",
+      "listingId": "adobo",
+      "vendorId": "v1",
+      "name": "Mika R.",
+      "dorm": "dapitan",
+      "qty": 2,
+      "pickupCode": "3907",
+      "status": "claimed",
+      "statusMsg": "",
+      "ageMin": 20
+    },
+    {
+      "id": "r-seed3",
+      "listingId": "adobo",
+      "vendorId": "v1",
+      "name": "Bea L.",
+      "dorm": "asturias",
+      "qty": 3,
+      "pickupCode": "7752",
+      "status": "reserved",
+      "statusMsg": "student:otw",
+      "ageMin": 10
+    },
+    {
+      "id": "r-seed4",
+      "listingId": "adobo",
+      "vendorId": "v1",
+      "name": "Carlo M.",
+      "dorm": "asturias",
+      "qty": 1,
+      "pickupCode": "2240",
+      "status": "reserved",
+      "statusMsg": "",
+      "ageMin": 5
+    }
+  ],
+  "messages": [
+    {
+      "reservationId": "r-seed1",
+      "from": "student",
+      "kind": "chat",
+      "text": "Hello po! Pwede po bang extra sabaw?",
+      "ageMin": 22
+    },
+    {
+      "reservationId": "r-seed1",
+      "from": "vendor",
+      "kind": "chat",
+      "text": "Opo, lalagyan ko po. Kunin n'yo na lang dito sa tindahan.",
+      "ageMin": 20
+    },
+    {
+      "reservationId": "r-seed3",
+      "from": "student",
+      "kind": "status",
+      "key": "student:otw",
+      "text": "On my way",
+      "ageMin": 8
+    }
+  ]
+}

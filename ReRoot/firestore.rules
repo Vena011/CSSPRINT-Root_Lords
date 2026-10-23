@@ -1,9 +1,117 @@
 rules_version = '2';
+// ReRoot security rules (J4). Deploy: Firebase console → Firestore → Rules, or `npx firebase-tools deploy --only firestore:rules`.
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Each user can only read/write their own profile document
+    function signedIn() { return request.auth != null; }
+    function isAdmin() { return signedIn() && request.auth.token.admin == true; }
+    function resDoc(rid) { return /databases/$(database)/documents/reservations/$(rid); }
+    function listingDoc(lid) { return /databases/$(database)/documents/listings/$(lid); }
+    function ownsVendor(vendorId) {
+      return signedIn() && get(/databases/$(database)/documents/vendors/$(vendorId)).data.ownerUid == request.auth.uid;
+    }
+    function changed() { return request.resource.data.diff(resource.data).affectedKeys(); }
+
+    // ---- accounts: role can be set once (null → student|vendor), never changed ----
     match /users/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow create: if signedIn() && request.auth.uid == uid && request.resource.data.role == null;
+      allow update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.role in [null, 'student', 'vendor']
+        && (resource.data.role == null || request.resource.data.role == resource.data.role)
+        && (resource.data.get('vendorId', null) == null || request.resource.data.get('vendorId', null) == resource.data.vendorId);
+    }
+
+    match /vendors/{vendorId} {
+      allow read: if true;
+      allow create: if signedIn() && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.name is string && request.resource.data.name.size() > 0;
+      allow update: if signedIn() && resource.data.ownerUid == request.auth.uid
+        && request.resource.data.ownerUid == resource.data.ownerUid;
+    }
+
+    // ---- listings: public to read; the owner edits; students may only move the counts inside a reserve/cancel transaction ----
+    function studentReserve(id) {
+      let r = getAfter(resDoc(request.resource.data.lastTx)).data;
+      return r.listingId == id && r.studentUid == request.auth.uid && r.status == 'reserved'
+        && !exists(resDoc(request.resource.data.lastTx))
+        && request.resource.data.servingsLeft == resource.data.servingsLeft - r.qty
+        && request.resource.data.ordersLeft == resource.data.ordersLeft - 1
+        && request.resource.data.servingsLeft >= 0 && request.resource.data.ordersLeft >= 0;
+    }
+    function studentCancel(id) {
+      let r = getAfter(resDoc(request.resource.data.lastTx)).data;
+      return r.listingId == id && r.studentUid == request.auth.uid && r.status == 'cancelled'
+        && get(resDoc(request.resource.data.lastTx)).data.status == 'reserved'
+        && request.resource.data.servingsLeft == resource.data.servingsLeft + r.qty
+        && request.resource.data.ordersLeft == resource.data.ordersLeft + 1;
+    }
+    match /listings/{id} {
+      allow read: if true;
+      allow create: if ownsVendor(request.resource.data.vendorId)
+        && request.resource.data.status == 'open'
+        && request.resource.data.servingsLeft == request.resource.data.servingsTotal
+        && request.resource.data.ordersLeft == request.resource.data.maxOrders
+        && request.resource.data.price is number && request.resource.data.price > 0
+        && request.resource.data.servingsTotal is number && request.resource.data.servingsTotal > 0
+        && (request.resource.data.get('photo', null) == null
+            || (request.resource.data.photo is string && request.resource.data.photo.size() < 450000));
+      allow update: if (ownsVendor(resource.data.vendorId) && request.resource.data.vendorId == resource.data.vendorId)
+        || (signedIn()
+            && changed().hasOnly(['servingsLeft', 'ordersLeft', 'status', 'lastTx'])
+            && request.resource.data.status in ['open', 'closed']
+            && (studentReserve(id) || studentCancel(id)));
+    }
+
+    // ---- reservations: the student sees their own; the vendor sees orders for their listings ----
+    match /reservations/{id} {
+      allow read: if signedIn() && (resource.data.studentUid == request.auth.uid || ownsVendor(resource.data.vendorId));
+      allow create: if signedIn()
+        && request.resource.data.studentUid == request.auth.uid
+        && request.resource.data.status == 'reserved'
+        && request.resource.data.qty is int && request.resource.data.qty >= 1 && request.resource.data.qty <= 10
+        && getAfter(listingDoc(request.resource.data.listingId)).data.lastTx == id;
+      allow update: if signedIn() && (
+        (resource.data.studentUid == request.auth.uid && changed().hasOnly(['statusMsg', 'lastMsg', 'lastMsgAt', 'lastFrom']))
+        || (resource.data.studentUid == request.auth.uid
+            && changed().hasOnly(['status', 'cancelledAt'])
+            && resource.data.status == 'reserved' && request.resource.data.status == 'cancelled'
+            && getAfter(listingDoc(resource.data.listingId)).data.lastTx == id)
+        || (ownsVendor(resource.data.vendorId)
+            && changed().hasOnly(['status', 'claimedAt', 'statusMsg', 'lastMsg', 'lastMsgAt', 'lastFrom'])
+            && request.resource.data.status in ['reserved', 'claimed'])
+      );
+    }
+
+    // ---- inbox: chat messages under each reservation; only that student and that vendor can read or write ----
+    match /reservations/{rid}/messages/{mid} {
+      function res() { return get(resDoc(rid)).data; }
+      allow read: if signedIn() && (res().studentUid == request.auth.uid || ownsVendor(res().vendorId));
+      allow create: if signedIn()
+        && request.resource.data.text is string && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 500
+        && request.resource.data.kind in ['chat', 'status']
+        && request.resource.data.createdAt is number
+        && request.resource.data.uid == request.auth.uid
+        && ((request.resource.data.from == 'student' && res().studentUid == request.auth.uid)
+            || (request.resource.data.from == 'vendor' && ownsVendor(res().vendorId)));
+    }
+
+    // ---- pickup codes: only existence is readable; written inside reserve/claim/cancel ----
+    match /pickupCodes/{codeId} {
+      allow get: if signedIn();
+      allow create, update: if signedIn()
+        && (request.resource.data.studentUid == request.auth.uid || ownsVendor(request.resource.data.vendorId));
+    }
+
+    // ---- push tokens: each user writes only their own; only the server (admin SDK) reads them ----
+    match /pushTokens/{token} {
+      allow create, update: if signedIn() && request.resource.data.uid == request.auth.uid && request.resource.data.token == token;
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid;
+    }
+
+    // ---- settings/today: anyone reads; only the admin (custom claim admin=true) writes ----
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
   }
 }
