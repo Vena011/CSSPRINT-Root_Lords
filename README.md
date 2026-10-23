@@ -26,8 +26,8 @@ Small food vendors near UST cook or prepare food **before** customers arrive. Wh
 - **Slow days are common.** From August 1 to September 15, 2026, 12 of 28 class days were cancelled in Metro Manila and nearby provinces, about 43% [1]. Disasters disrupted 69 school days nationwide in 2025 [2], and DepEd is preparing modified class days for SY 2026–27 because of a possible strong El Niño [3].
 - **Every unsold serving costs more.** In April 2026, carinderia owners raised dish prices by ₱10–15 as LPG, rice, meat and cooking oil became more expensive [4].
 - **Food waste is large.** The Philippines wastes about 2,175 tons of food every day [5].
-- **Existing channels don't fit.** Delivery apps charge about 20–33% commission [6]. Surplus-food apps work abroad (Too Good To Go has 120 million users in 21 countries), but we found no Philippine launch [7].
-- **The area is dense.** UST is one of about 56 schools in Manila's University Belt [8].
+- **Existing channels don't fit.** Delivery apps charge about 20–33% commission [6].
+- **The area is dense.** UST is one of about 56 schools in Manila's University Belt [7].
 
 ### Field results (our interviews, Oct 22, 2026)
 
@@ -177,5 +177,4 @@ Built during **CSSprint 2026: Rooted in Innovation**, UST Computer Science Socie
 4. MindaNews, ["Carenderia owners, food stall vendors raise prices"](https://mindanews.com/top-stories/2026/04/carenderia-owners-food-stall-vendors-raise-prices-but-customers-understand/), Apr 19, 2026
 5. Manila Bulletin, ["Help reduce food wastage"](https://mb.com.ph/2025/12/04/help-reduce-food-wastage), Dec 4, 2025 (DOST-FNRI data)
 6. Klikit, ["Food delivery commission fees in the Philippines"](https://klikit.io/en/learn/food-delivery-commission-fees-philippines-guide), May 26, 2026
-7. PR Newswire, ["Too Good To Go launches in Japan"](https://www.prnewswire.com/news-releases/worlds-largest-marketplace-for-surplus-food-too-good-to-go-launches-in-japan-302672081.html), Jan 28, 2026
-8. Wikipedia, ["University Belt"](https://en.wikipedia.org/wiki/University_Belt)
+7. Wikipedia, ["University Belt"](https://en.wikipedia.org/wiki/University_Belt)
