@@ -7,10 +7,10 @@ Built during **CSSprint 2026: Rooted in Innovation** (UST Computer Science Socie
 **Live app:** [cssprint-root-lords.vercel.app](https://cssprint-root-lords.vercel.app) · **Documentation:** [DOCUMENTATION.md](DOCUMENTATION.md) · **Design:** [Figma](https://www.figma.com/design/ZcBuIaRZjjnQZaCYpBaHLn)
 
 <p>
-  <img src="docs/screenshots/student-home.png" width="200" alt="Student home">
-  <img src="docs/screenshots/listing-detail.png" width="200" alt="Listing detail">
-  <img src="docs/screenshots/pickup-code.png" width="200" alt="Pickup code">
-  <img src="docs/screenshots/vendor-dashboard.png" width="200" alt="Vendor dashboard">
+  <img src="ReRoot/docs/screenshots/student-home.png" width="200" alt="Student home">
+  <img src="ReRoot/docs/screenshots/listing-detail.png" width="200" alt="Listing detail">
+  <img src="ReRoot/docs/screenshots/pickup-code.png" width="200" alt="Pickup code">
+  <img src="ReRoot/docs/screenshots/vendor-dashboard.png" width="200" alt="Vendor dashboard">
 </p>
 
 ---
@@ -84,11 +84,11 @@ Small food vendors near UST cook or prepare food **before** customers arrive. Wh
 `score = 40 × (1 − distance ÷ radius) + 30 × (1 − minutesLeft ÷ 180, min 0) + 20 × (1 − price ÷ highest price shown) + 10 if the student bought from this vendor before`. The top 3 show as "Recommended"; everyone else is sorted by distance.
 
 <p>
-  <img src="docs/screenshots/reserve.png" width="200" alt="Reserve form">
-  <img src="docs/screenshots/orders-by-dorm.png" width="200" alt="Orders by dorm">
-  <img src="docs/screenshots/share-sheet.png" width="200" alt="Share sheet">
-  <img src="docs/screenshots/check-code.png" width="200" alt="Order Codes">
-  <img src="docs/screenshots/inbox-chat.png" width="200" alt="Inbox chat">
+  <img src="ReRoot/docs/screenshots/reserve.png" width="200" alt="Reserve form">
+  <img src="ReRoot/docs/screenshots/orders-by-dorm.png" width="200" alt="Orders by dorm">
+  <img src="ReRoot/docs/screenshots/share-sheet.png" width="200" alt="Share sheet">
+  <img src="ReRoot/docs/screenshots/check-code.png" width="200" alt="Order Codes">
+  <img src="ReRoot/docs/screenshots/inbox-chat.png" width="200" alt="Inbox chat">
 </p>
 
 ## 4. Tech stack
@@ -118,21 +118,19 @@ npm run dev                  # http://localhost:3000
 
 Setup, Firebase, deployment and the data model are in [DOCUMENTATION.md](DOCUMENTATION.md).
 
-Environment variables (names only): `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`, `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`, `NEXT_PUBLIC_FIREBASE_APP_ID`, `NEXT_PUBLIC_FIREBASE_VAPID_KEY`, `FIREBASE_SERVICE_ACCOUNT` (server only).
-
 **Demo logins** (password `demo1234`): vendor `nena@reroot.test`, student `student@reroot.test`. New users sign up at `/login` and choose Student or Vendor.
 
 ### Folder structure
 
 ```
-app/            pages (student: /, /l/[id], /r/[id], /me; vendor: /vendor/...; both: /inbox, /account, /login)
-app/api/        push notifications (/api/notify)
-components/     UI components (ListingCard, ChatThread, LeafletMap, MessageAlerts, ...)
-lib/            data layer (data.js → db.js Firebase | mock.js demo), copy (EN/FIL), ranking, geo, photo
-scripts/        seed script for the demo data
-data/           demo seed data
-public/         icons, logo, preview image, manifest
-docs/           screenshots
+ReRoot/app/            pages (student: /, /l/[id], /r/[id], /me; vendor: /vendor/...; both: /inbox, /account, /login)
+ReRoot/app/api/        push notifications (/api/notify)
+ReRoot/components/     UI components (ListingCard, ChatThread, LeafletMap, MessageAlerts, ...)
+ReRoot/lib/            data layer (data.js → db.js Firebase | mock.js demo), copy (EN/FIL), ranking, geo, photo
+ReRoot/scripts/        seed script for the demo data
+ReRoot/data/           demo seed data
+ReRoot/public/         icons, logo, preview image, manifest
+ReRoot/docs/           screenshots
 ```
 
 ## 5. Roadmap
@@ -148,10 +146,10 @@ docs/           screenshots
 
 | Member | Role |
 | --- | --- |
-| Lord Benedict Janda | Team leader, design (Figma, style guide, logo, deck), submissions |
-| John Carlo "JC" Mananes | Lead developer: Firebase, data layer, security rules, API, deployment, push |
-| Lawrence Christian Bonus | Developer: screens and components, map, sharing, styling |
-| Aleia Cejas | Contents: problem research, interviews, survey, UI copy, demo data, pitch content |
+| Lord Benedict Janda | Team leader · Figma designer (wireframes, style guide, hi-fi screens, prototype), logo, pitch deck, front-end code, pitch |
+| John Carlo Mananes | Lead developer: Firebase, security rules, push, deployment |
+| Lawrence Christian Bonus | Developer: screens, components, testing |
+| Aleia Cejas | Contents: problem research, vendor interviews, UI copy, pitch content |
 
 ## 7. Credits
 
